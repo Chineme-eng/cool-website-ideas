@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>WebVault — Free Sites Worth Visiting</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=DM+Sans:wght@300;400;500&amp;family=DM+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
 <style>
   :root {
     --cream: #F5F0E8;
@@ -345,155 +346,148 @@
 </style>
 </head>
 <body>
-
 <header>
-  <div class="hero">
-    <div>
-      <div class="hero-title">Web<span>Vault</span></div>
-      <p class="hero-sub"><span id="heroSubCount"></span> weird, wonderful, and genuinely useful websites the internet doesn't talk about enough.</p>
-      <button class="surprise-btn" onclick="surpriseMe()">⚡ Surprise Me</button>
-    </div>
-    <div class="hero-count" id="heroCount"></div>
-  </div>
-
-  <div class="search-wrap">
-    <div class="search-container">
-      <span class="search-icon">⌕</span>
-      <input class="search-bar" type="text" id="searchInput" placeholder="Search sites…" oninput="handleSearch()">
-      <span class="search-count" id="searchCount"></span>
-    </div>
-  </div>
+<div class="hero">
+<div>
+<div class="hero-title">Web<span>Vault</span></div>
+<p class="hero-sub"><span id="heroSubCount"></span> weird, wonderful, and genuinely useful websites the internet doesn't talk about enough.</p>
+<button class="surprise-btn" onclick="surpriseMe()">⚡ Surprise Me</button>
+</div>
+<div class="hero-count" id="heroCount"></div>
+</div>
+<div class="search-wrap">
+<div class="search-container">
+<span class="search-icon">⌕</span>
+<input class="search-bar" id="searchInput" oninput="handleSearch()" placeholder="Search sites…" type="text"/>
+<span class="search-count" id="searchCount"></span>
+</div>
+</div>
 </header>
-
 <nav class="sticky-nav">
-  <div class="nav-inner" id="navInner">
-    <button class="nav-btn active" data-cat="all" onclick="filterCategory('all', this)">All <span class="count"></span></button>
-    <button class="nav-btn" data-cat="fun" onclick="filterCategory('fun', this)">🎮 Fun & Entertainment <span class="count"></span></button>
-    <button class="nav-btn" data-cat="productivity" onclick="filterCategory('productivity', this)">⚡ Productivity & Tools <span class="count"></span></button>
-    <button class="nav-btn" data-cat="creative" onclick="filterCategory('creative', this)">🎨 Creative & Design <span class="count"></span></button>
-    <button class="nav-btn" data-cat="learning" onclick="filterCategory('learning', this)">📚 Learning & Education <span class="count"></span></button>
-    <button class="nav-btn" data-cat="weird" onclick="filterCategory('weird', this)">🌀 Weird & Random <span class="count"></span></button>
-    <button class="nav-btn" data-cat="music" onclick="filterCategory('music', this)">🎵 Music & Audio <span class="count"></span></button>
-    <button class="nav-btn" data-cat="visual" onclick="filterCategory('visual', this)">🖼️ Visual & Art <span class="count"></span></button>
-    <button class="nav-btn" data-cat="dev" onclick="filterCategory('dev', this)">💻 Developer Tools <span class="count"></span></button>
-    <button class="nav-btn" data-cat="nature" onclick="filterCategory('nature', this)">🌿 Nature & Science <span class="count"></span></button>
-    <button class="nav-btn" data-cat="mindblowing" onclick="filterCategory('mindblowing', this)">🤯 Mind-Blowing <span class="count"></span></button>
-  </div>
+<div class="nav-inner" id="navInner">
+<button class="nav-btn active" data-cat="all" onclick="filterCategory('all', this)">All <span class="count"></span></button>
+<button class="nav-btn" data-cat="fun" onclick="filterCategory('fun', this)">🎮 Fun &amp; Entertainment <span class="count"></span></button>
+<button class="nav-btn" data-cat="productivity" onclick="filterCategory('productivity', this)">⚡ Productivity &amp; Tools <span class="count"></span></button>
+<button class="nav-btn" data-cat="creative" onclick="filterCategory('creative', this)">🎨 Creative &amp; Design <span class="count"></span></button>
+<button class="nav-btn" data-cat="learning" onclick="filterCategory('learning', this)">📚 Learning &amp; Education <span class="count"></span></button>
+<button class="nav-btn" data-cat="weird" onclick="filterCategory('weird', this)">🌀 Weird &amp; Random <span class="count"></span></button>
+<button class="nav-btn" data-cat="music" onclick="filterCategory('music', this)">🎵 Music &amp; Audio <span class="count"></span></button>
+<button class="nav-btn" data-cat="visual" onclick="filterCategory('visual', this)">🖼️ Visual &amp; Art <span class="count"></span></button>
+<button class="nav-btn" data-cat="dev" onclick="filterCategory('dev', this)">💻 Developer Tools <span class="count"></span></button>
+<button class="nav-btn" data-cat="nature" onclick="filterCategory('nature', this)">🌿 Nature &amp; Science <span class="count"></span></button>
+<button class="nav-btn" data-cat="mindblowing" onclick="filterCategory('mindblowing', this)">🤯 Mind-Blowing <span class="count"></span></button>
+    <button class="nav-btn" data-cat="interactive" onclick="filterCategory('interactive', this)">🕹️ Interactive & Fun <span class="count"></span></button>
+</div>
 </nav>
-
 <main id="mainContent">
-
 <!-- FUN & ENTERTAINMENT -->
 <section class="category-section" data-category="fun">
+<div class="category-header">
+<span class="category-icon">🎮</span>
+<span class="category-name">Fun &amp; Entertainment</span>
+<span class="category-total"><span id="total-fun"></span></span>
+</div>
+<div class="sites-grid" id="grid-fun"></div>
+</section>
+<!-- INTERACTIVE -->
+<section class="category-section" data-category="interactive">
   <div class="category-header">
-    <span class="category-icon">🎮</span>
-    <span class="category-name">Fun & Entertainment</span>
-    <span class="category-total"><span id="total-fun"></span></span>
+    <span class="category-icon">🕹️</span>
+    <span class="category-name">Interactive & Fun</span>
+    <span class="category-total"><span id="total-interactive"></span></span>
   </div>
-  <div class="sites-grid" id="grid-fun"></div>
+  <div class="sites-grid" id="grid-interactive"></div>
 </section>
 
 <!-- PRODUCTIVITY -->
 <section class="category-section" data-category="productivity">
-  <div class="category-header">
-    <span class="category-icon">⚡</span>
-    <span class="category-name">Productivity & Tools</span>
-    <span class="category-total"><span id="total-productivity"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-productivity"></div>
+<div class="category-header">
+<span class="category-icon">⚡</span>
+<span class="category-name">Productivity &amp; Tools</span>
+<span class="category-total"><span id="total-productivity"></span></span>
+</div>
+<div class="sites-grid" id="grid-productivity"></div>
 </section>
-
 <!-- CREATIVE -->
 <section class="category-section" data-category="creative">
-  <div class="category-header">
-    <span class="category-icon">🎨</span>
-    <span class="category-name">Creative & Design</span>
-    <span class="category-total"><span id="total-creative"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-creative"></div>
+<div class="category-header">
+<span class="category-icon">🎨</span>
+<span class="category-name">Creative &amp; Design</span>
+<span class="category-total"><span id="total-creative"></span></span>
+</div>
+<div class="sites-grid" id="grid-creative"></div>
 </section>
-
 <!-- LEARNING -->
 <section class="category-section" data-category="learning">
-  <div class="category-header">
-    <span class="category-icon">📚</span>
-    <span class="category-name">Learning & Education</span>
-    <span class="category-total"><span id="total-learning"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-learning"></div>
+<div class="category-header">
+<span class="category-icon">📚</span>
+<span class="category-name">Learning &amp; Education</span>
+<span class="category-total"><span id="total-learning"></span></span>
+</div>
+<div class="sites-grid" id="grid-learning"></div>
 </section>
-
 <!-- WEIRD -->
 <section class="category-section" data-category="weird">
-  <div class="category-header">
-    <span class="category-icon">🌀</span>
-    <span class="category-name">Weird & Random</span>
-    <span class="category-total"><span id="total-weird"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-weird"></div>
+<div class="category-header">
+<span class="category-icon">🌀</span>
+<span class="category-name">Weird &amp; Random</span>
+<span class="category-total"><span id="total-weird"></span></span>
+</div>
+<div class="sites-grid" id="grid-weird"></div>
 </section>
-
 <!-- MUSIC -->
 <section class="category-section" data-category="music">
-  <div class="category-header">
-    <span class="category-icon">🎵</span>
-    <span class="category-name">Music & Audio</span>
-    <span class="category-total"><span id="total-music"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-music"></div>
+<div class="category-header">
+<span class="category-icon">🎵</span>
+<span class="category-name">Music &amp; Audio</span>
+<span class="category-total"><span id="total-music"></span></span>
+</div>
+<div class="sites-grid" id="grid-music"></div>
 </section>
-
 <!-- VISUAL -->
 <section class="category-section" data-category="visual">
-  <div class="category-header">
-    <span class="category-icon">🖼️</span>
-    <span class="category-name">Visual & Art</span>
-    <span class="category-total"><span id="total-visual"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-visual"></div>
+<div class="category-header">
+<span class="category-icon">🖼️</span>
+<span class="category-name">Visual &amp; Art</span>
+<span class="category-total"><span id="total-visual"></span></span>
+</div>
+<div class="sites-grid" id="grid-visual"></div>
 </section>
-
 <!-- DEV -->
 <section class="category-section" data-category="dev">
-  <div class="category-header">
-    <span class="category-icon">💻</span>
-    <span class="category-name">Developer Tools</span>
-    <span class="category-total"><span id="total-dev"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-dev"></div>
+<div class="category-header">
+<span class="category-icon">💻</span>
+<span class="category-name">Developer Tools</span>
+<span class="category-total"><span id="total-dev"></span></span>
+</div>
+<div class="sites-grid" id="grid-dev"></div>
 </section>
-
 <!-- NATURE -->
 <section class="category-section" data-category="nature">
-  <div class="category-header">
-    <span class="category-icon">🌿</span>
-    <span class="category-name">Nature & Science</span>
-    <span class="category-total"><span id="total-nature"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-nature"></div>
+<div class="category-header">
+<span class="category-icon">🌿</span>
+<span class="category-name">Nature &amp; Science</span>
+<span class="category-total"><span id="total-nature"></span></span>
+</div>
+<div class="sites-grid" id="grid-nature"></div>
 </section>
-
 <!-- MINDBLOWING -->
 <section class="category-section" data-category="mindblowing">
-  <div class="category-header">
-    <span class="category-icon">🤯</span>
-    <span class="category-name">Mind-Blowing</span>
-    <span class="category-total"><span id="total-mindblowing"></span></span>
-  </div>
-  <div class="sites-grid" id="grid-mindblowing"></div>
-</section>
-
-<div class="no-results" id="noResults">
-  <h3>No sites found</h3>
-  <p>Try a different search term</p>
+<div class="category-header">
+<span class="category-icon">🤯</span>
+<span class="category-name">Mind-Blowing</span>
+<span class="category-total"><span id="total-mindblowing"></span></span>
 </div>
-
+<div class="sites-grid" id="grid-mindblowing"></div>
+</section>
+<div class="no-results" id="noResults">
+<h3>No sites found</h3>
+<p>Try a different search term</p>
+</div>
 </main>
-
 <footer>
-  <strong>WebVault</strong> — 388 sites worth your time. Built for the curious.
+<strong>WebVault</strong> — <span id="footerCount"></span> worth your time. Built for the curious.
 </footer>
-
 <script>
 const sites = {
   "fun": [
@@ -723,6 +717,53 @@ const sites = {
       "desc": "Guess the mystery animal — clues reveal how close you are on the tree of life."
     }
   ],
+  "interactive": [
+    {
+        "name": "MapCrunch",
+        "url": "https://www.mapcrunch.com",
+        "desc": "Teleport to random Street View locations around the world and explore them instantly."
+    },
+    {
+        "name": "Sandspiel",
+        "url": "https://sandspiel.club",
+        "desc": "Physics sandbox where you draw with elements like fire, water, sand, and plants."
+    },
+    {
+        "name": "Pixel Thoughts",
+        "url": "https://www.pixelthoughts.co",
+        "desc": "Type a worry and watch it drift into space in a one-minute interactive meditation."
+    },
+    {
+        "name": "Typatone",
+        "url": "https://typatone.com",
+        "desc": "Every letter you type becomes music, turning writing into a playable melody."
+    },
+    {
+        "name": "Scale of the Universe",
+        "url": "https://scaleofuniverse.com",
+        "desc": "Scroll from the tiniest particles to the largest objects in the universe."
+    },
+    {
+        "name": "Emoji Simulator",
+        "url": "https://ncase.me/simulating/",
+        "desc": "Play with cellular automata and interactive simulations in a weird little sandbox."
+    },
+    {
+        "name": "Experiments with Google",
+        "url": "https://experiments.withgoogle.com",
+        "desc": "Archive of interactive web experiments, creative toys, and browser-based projects."
+    },
+    {
+        "name": "Cookie Clicker",
+        "url": "https://orteil.dashnet.org/cookieclicker/",
+        "desc": "The legendary incremental browser game where one click turns into absolute chaos."
+    },
+    {
+        "name": "Radiooooo",
+        "url": "https://radiooooo.com",
+        "desc": "Choose a country and decade, then hear music people there were actually listening to."
+    }
+],
   "productivity": [
     {
       "name": "Notion",
@@ -2531,7 +2572,7 @@ const sites = {
 let currentCategory = 'all';
 let searchQuery = '';
 let searchTimer;
-const categoryOrder = ['fun','productivity','creative','learning','weird','music','visual','dev','nature','mindblowing'];
+const categoryOrder = ['fun','interactive','productivity','creative','learning','weird','music','visual','dev','nature','mindblowing'];
 const categoryLabels = {
   fun: 'fun entertainment games trivia',
   productivity: 'productivity tools writing forms planning utility',
@@ -2669,6 +2710,8 @@ function filterAndShow() {
     ? `${totalVisible} site${totalVisible !== 1 ? 's' : ''}`
     : `${totalSites} sites`;
   document.getElementById('searchCount').textContent = countText;
+  const footerCount = document.getElementById('footerCount');
+  if (footerCount) footerCount.textContent = `${totalSites} sites`;
   document.getElementById('noResults').classList.toggle('show', totalVisible === 0);
 }
 
@@ -2709,9 +2752,14 @@ document.addEventListener('keydown', (event) => {
     searchInput.blur();
   }
 });
+
+
 buildGrids();
 updateStaticCounts();
 filterAndShow();
 </script>
+
+
+
 </body>
 </html>

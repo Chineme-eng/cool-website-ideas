@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebVault — 350 Sites Worth Visiting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D9;
+    --cream-darker: #E0D8C8;
+    --black: #1A1713;
+    --black-soft: #2D2924;
+    --orange: #E8620A;
+    --orange-light: #F07A2A;
+    --orange-pale: #FBE8D8;
+    --muted: #7A7268;
+    --border: rgba(26,23,19,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 40px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -2px;
+    color: var(--black);
+  }
+  .hero-title span { color: var(--orange); }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 20px;
+    max-width: 340px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-count {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(80px, 14vw, 160px);
+    font-weight: 900;
+    color: var(--cream-darker);
+    line-height: 1;
+    letter-spacing: -4px;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  /* SURPRISE BTN */
+  .surprise-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .surprise-btn:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+  /* SEARCH */
+  .search-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 32px;
+  }
+  .search-bar {
+    width: 100%;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px 16px 52px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .search-bar:focus { border-color: var(--orange); }
+  .search-container { position: relative; }
+  .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 18px;
+    pointer-events: none;
+  }
+  .search-count {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* STICKY NAV */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    backdrop-filter: blur(8px);
+  }
+  .nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 12px 0;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    padding: 8px 16px;
+    border-radius: 40px;
+    border: 1px solid var(--border);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .nav-btn:hover { background: var(--cream-darker); color: var(--black); }
+  .nav-btn.active { background: var(--black); color: var(--cream); border-color: var(--black); }
+  .nav-btn .count {
+    background: rgba(255,255,255,0.15);
+    padding: 1px 6px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+  }
+  .nav-btn.active .count { background: rgba(255,255,255,0.2); }
+  .nav-btn:not(.active) .count { background: var(--cream-darker); color: var(--muted); }
+
+  /* MAIN */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* CATEGORY SECTION */
+  .category-section {
+    margin-bottom: 64px;
+  }
+  .category-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--black);
+  }
+  .category-icon { font-size: 22px; }
+  .category-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--black);
+  }
+  .category-total {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* GRID */
+  .sites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  /* SITE CARD */
+  .site-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s;
+  }
+  .site-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,23,19,0.1); border-color: var(--orange); }
+  .site-card:hover::before { transform: scaleX(1); }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .site-favicon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .site-favicon img { width: 100%; height: 100%; object-fit: contain; }
+  .site-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: auto;
+  }
+  .site-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--black);
+    flex: 1;
+  }
+  .site-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .visit-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--orange);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s;
+  }
+  .visit-link:hover { gap: 8px; }
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .copy-btn:hover { background: var(--orange-pale); color: var(--orange); border-color: var(--orange); }
+  .copy-btn.copied { background: #d4f5e2; color: #1a7a47; border-color: #1a7a47; }
+
+  /* NO RESULTS */
+  .no-results {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+    display: none;
+  }
+  .no-results.show { display: block; }
+  .no-results h3 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 12px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer strong { color: var(--orange); }
+
+  /* HIDDEN */
+  .hidden { display: none !important; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 20px 40px; }
+    .search-wrap, main { padding-left: 20px; padding-right: 20px; }
+    .sticky-nav { padding: 0 20px; }
+    .hero-count { display: none; }
+    .sites-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <div>
+      <div class="hero-title">Web<span>Vault</span></div>
+      <p class="hero-sub">350 weird, wonderful, and genuinely useful websites the internet doesn't talk about enough.</p>
+      <button class="surprise-btn" onclick="surpriseMe()">⚡ Surprise Me</button>
+    </div>
+    <div class="hero-count">350</div>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-container">
+      <span class="search-icon">⌕</span>
+      <input class="search-bar" type="text" id="searchInput" placeholder="Search 350 sites…" oninput="handleSearch()">
+      <span class="search-count" id="searchCount">350 sites</span>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky-nav">
+  <div class="nav-inner" id="navInner">
+    <button class="nav-btn active" onclick="filterCategory('all', this)">All <span class="count">350</span></button>
+    <button class="nav-btn" onclick="filterCategory('fun', this)">🎮 Fun & Entertainment <span class="count">45</span></button>
+    <button class="nav-btn" onclick="filterCategory('productivity', this)">⚡ Productivity & Tools <span class="count">45</span></button>
+    <button class="nav-btn" onclick="filterCategory('creative', this)">🎨 Creative & Design <span class="count">40</span></button>
+    <button class="nav-btn" onclick="filterCategory('learning', this)">📚 Learning & Education <span class="count">35</span></button>
+    <button class="nav-btn" onclick="filterCategory('weird', this)">🌀 Weird & Random <span class="count">40</span></button>
+    <button class="nav-btn" onclick="filterCategory('music', this)">🎵 Music & Audio <span class="count">25</span></button>
+    <button class="nav-btn" onclick="filterCategory('visual', this)">🖼️ Visual & Art <span class="count">30</span></button>
+    <button class="nav-btn" onclick="filterCategory('dev', this)">💻 Developer Tools <span class="count">35</span></button>
+    <button class="nav-btn" onclick="filterCategory('nature', this)">🌿 Nature & Science <span class="count">25</span></button>
+    <button class="nav-btn" onclick="filterCategory('mindblowing', this)">🤯 Mind-Blowing <span class="count">30</span></button>
+  </div>
+</nav>
+
+<main id="mainContent">
+
+<!-- FUN & ENTERTAINMENT -->
+<section class="category-section" data-category="fun">
+  <div class="category-header">
+    <span class="category-icon">🎮</span>
+    <span class="category-name">Fun & Entertainment</span>
+    <span class="category-total">45 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-fun"></div>
+</section>
+
+<!-- PRODUCTIVITY -->
+<section class="category-section" data-category="productivity">
+  <div class="category-header">
+    <span class="category-icon">⚡</span>
+    <span class="category-name">Productivity & Tools</span>
+    <span class="category-total">45 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-productivity"></div>
+</section>
+
+<!-- CREATIVE -->
+<section class="category-section" data-category="creative">
+  <div class="category-header">
+    <span class="category-icon">🎨</span>
+    <span class="category-name">Creative & Design</span>
+    <span class="category-total">40 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-creative"></div>
+</section>
+
+<!-- LEARNING -->
+<section class="category-section" data-category="learning">
+  <div class="category-header">
+    <span class="category-icon">📚</span>
+    <span class="category-name">Learning & Education</span>
+    <span class="category-total">35 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-learning"></div>
+</section>
+
+<!-- WEIRD -->
+<section class="category-section" data-category="weird">
+  <div class="category-header">
+    <span class="category-icon">🌀</span>
+    <span class="category-name">Weird & Random</span>
+    <span class="category-total">40 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-weird"></div>
+</section>
+
+<!-- MUSIC -->
+<section class="category-section" data-category="music">
+  <div class="category-header">
+    <span class="category-icon">🎵</span>
+    <span class="category-name">Music & Audio</span>
+    <span class="category-total">25 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-music"></div>
+</section>
+
+<!-- VISUAL -->
+<section class="category-section" data-category="visual">
+  <div class="category-header">
+    <span class="category-icon">🖼️</span>
+    <span class="category-name">Visual & Art</span>
+    <span class="category-total">30 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-visual"></div>
+</section>
+
+<!-- DEV -->
+<section class="category-section" data-category="dev">
+  <div class="category-header">
+    <span class="category-icon">💻</span>
+    <span class="category-name">Developer Tools</span>
+    <span class="category-total">35 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-dev"></div>
+</section>
+
+<!-- NATURE -->
+<section class="category-section" data-category="nature">
+  <div class="category-header">
+    <span class="category-icon">🌿</span>
+    <span class="category-name">Nature & Science</span>
+    <span class="category-total">25 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-nature"></div>
+</section>
+
+<!-- MINDBLOWING -->
+<section class="category-section" data-category="mindblowing">
+  <div class="category-header">
+    <span class="category-icon">🤯</span>
+    <span class="category-name">Mind-Blowing</span>
+    <span class="category-total">30 sites</span>
+  </div>
+  <div class="sites-grid" id="grid-mindblowing"></div>
+</section>
+
+<div class="no-results" id="noResults">
+  <h3>No sites found</h3>
+  <p>Try a different search term</p>
+</div>
+
+</main>
+
+<footer>
+  <strong>WebVault</strong> — 350 sites worth your time. Built for the curious.
+</footer>
+
+<script>
+const sites = {
+  fun: [
+    { name: "Window Swap", url: "https://www.window-swap.com", desc: "Look through strangers' windows from around the world in real time." },
+    { name: "GeoGuessr", url: "https://www.geoguessr.com", desc: "Drop into a random Google Street View and guess where in the world you are." },
+    { name: "Skribbl.io", url: "https://skribbl.io", desc: "Free online multiplayer drawing and guessing game." },
+    { name: "Gartic Phone", url: "https://garticphone.com", desc: "Telephone game meets Pictionary — hilarious results every time." },
+    { name: "Sporcle", url: "https://www.sporcle.com", desc: "Trivia quiz site with millions of quizzes on every topic imaginable." },
+    { name: "Akinator", url: "https://en.akinator.com", desc: "Genie guesses any real or fictional character you're thinking of." },
+    { name: "HeyRival", url: "https://heyrival.com", desc: "Challenge friends to trivia and skill games in real time." },
+    { name: "2048", url: "https://play2048.co", desc: "Addictive sliding puzzle game where you combine tiles to reach 2048." },
+    { name: "TypeRacer", url: "https://typeracer.com", desc: "Race others live by typing quotes as fast as possible." },
+    { name: "Freerice", url: "https://freerice.com", desc: "Answer trivia questions and the site donates rice to WFP for each correct answer." },
+    { name: "Drawasaurus", url: "https://www.drawasaurus.org", desc: "Free multiplayer drawing guessing game with no ads." },
+    { name: "QuizUp (archived)", url: "https://quizup.com", desc: "Classic trivia battle app playable in browser." },
+    { name: "The Wiki Game", url: "https://www.thewikigame.com", desc: "Race from one Wikipedia article to another using only links." },
+    { name: "Deemo", url: "https://www.rayark.com/g/deemo", desc: "Beautiful rhythm game with a haunting story and gorgeous music." },
+    { name: "Radio Garden", url: "https://radio.garden", desc: "Spin a globe and listen to live radio from anywhere on Earth." },
+    { name: "Lyricle", url: "https://www.lyricle.app", desc: "Wordle-style game where you guess a song from its lyrics." },
+    { name: "Poeltl", url: "https://poeltl.dunk.town", desc: "Guess the NBA player from silhouette clues — basketball fans go wild." },
+    { name: "Framed", url: "https://framed.wtf", desc: "Guess the movie from a single film frame — new one daily." },
+    { name: "Connections (NYT)", url: "https://www.nytimes.com/games/connections", desc: "Group 16 words into 4 hidden categories — deceptively tricky." },
+    { name: "Semantle", url: "https://semantle.com", desc: "Guess a word based on how semantically close your guesses are." },
+    { name: "Worldle", url: "https://worldle.teuteuf.fr", desc: "Guess the country from its shape — geography Wordle." },
+    { name: "Globle", url: "https://globle-game.com", desc: "Guess the mystery country with hot/cold distance hints on a 3D globe." },
+    { name: "Immaculate Grid", url: "https://www.immaculategrid.com", desc: "MLB trivia grid where you name players who fit two criteria at once." },
+    { name: "Cardle", url: "https://www.cardle.uk", desc: "Guess the car model from a zoomed-in photo clue each day." },
+    { name: "Redactle", url: "https://redactle.net", desc: "Guess a Wikipedia article with all meaningful words blacked out." },
+    { name: "Heardle", url: "https://www.heardle.app", desc: "Guess the song from progressively revealed audio snippets." },
+    { name: "Moviedle", url: "https://moviedle.app", desc: "Guess the movie from a single-second sped-up clip that slows down." },
+    { name: "Chess.com Puzzles", url: "https://www.chess.com/puzzles", desc: "Daily chess puzzles ranked by difficulty — addictive for all skill levels." },
+    { name: "Infinite Craft", url: "https://neal.fun/infinite-craft", desc: "Combine elements infinitely to create everything in the universe." },
+    { name: "The Useless Web", url: "https://theuselessweb.com", desc: "Button that teleports you to a random pointless but delightful website." },
+    { name: "Quick, Draw!", url: "https://quickdraw.withgoogle.com", desc: "Google AI tries to guess your doodles in 20 seconds." },
+    { name: "Emoji Kitchen", url: "https://emojikitchen.dev", desc: "Combine any two Google emojis to create a brand-new hybrid emoji." },
+    { name: "Letter Boxed", url: "https://www.nytimes.com/puzzles/letter-boxed", desc: "Connect letters around a box to spell words — NYT daily word puzzle." },
+    { name: "Spelling Bee (NYT)", url: "https://www.nytimes.com/puzzles/spelling-bee", desc: "Create as many words as possible from seven letters — find the pangram." },
+    { name: "Mini Crossword", url: "https://www.nytimes.com/crosswords/game/mini", desc: "A 5x5 crossword puzzle you can finish in under two minutes." },
+    { name: "Wikitrivia", url: "https://wikitrivia.tomjwatson.com", desc: "Place historical events on a timeline — harder than it looks." },
+    { name: "Jigsaw Planet", url: "https://www.jigsawplanet.com", desc: "Play thousands of free online jigsaw puzzles or make your own." },
+    { name: "100,000 Stars", url: "https://stars.chromeexperiments.com", desc: "Interactive 3D visualization of 100,000 nearest stars to our sun." },
+    { name: "Pogo", url: "https://www.pogo.com", desc: "Huge library of free casual browser games — classic internet nostalgia." },
+    { name: "Lichess", url: "https://lichess.org", desc: "Completely free open-source chess platform with millions of players." },
+    { name: "Krunker.io", url: "https://krunker.io", desc: "Surprisingly polished free browser-based FPS game." },
+    { name: "Slither.io", url: "https://slither.io", desc: "Multiplayer snake game where you consume others to become the biggest." },
+    { name: "Paper.io 2", url: "https://paper-io.com", desc: "Claim territory on a map while defending against other players." },
+    { name: "Wordle Archive", url: "https://metzger.media/games/wordle-archive", desc: "Play every past NYT Wordle ever published." },
+    { name: "Metazooa", url: "https://metazooa.com", desc: "Guess the mystery animal — clues reveal how close you are on the tree of life." },
+  ],
+
+  productivity: [
+    { name: "Notion", url: "https://notion.so", desc: "All-in-one workspace for notes, databases, wikis, and project management." },
+    { name: "Obsidian", url: "https://obsidian.md", desc: "Local-first markdown note-taking app with a powerful knowledge graph." },
+    { name: "Excalidraw", url: "https://excalidraw.com", desc: "Virtual whiteboard for sketching diagrams with a hand-drawn feel." },
+    { name: "Tldraw", url: "https://www.tldraw.com", desc: "Beautifully simple infinite canvas drawing and diagram tool." },
+    { name: "Cron", url: "https://cron.com", desc: "The calendar for professionals — clean, fast, and keyboard-first." },
+    { name: "Toggl Track", url: "https://toggl.com/track", desc: "Effortless time tracking with one-click timers and beautiful reports." },
+    { name: "Focusmate", url: "https://www.focusmate.com", desc: "Book virtual coworking sessions with strangers to hold yourself accountable." },
+    { name: "Forest", url: "https://www.forestapp.cc", desc: "Plant a virtual tree to stay focused — real trees get planted with coins earned." },
+    { name: "Workflowy", url: "https://workflowy.com", desc: "Infinite nested bullet list for organizing literally anything." },
+    { name: "Supernotes", url: "https://supernotes.app", desc: "Collaborative card-based note-taking system built for connected thinking." },
+    { name: "Raindrop.io", url: "https://raindrop.io", desc: "Beautiful bookmark manager that actually makes you revisit your saved links." },
+    { name: "Omnivore", url: "https://omnivore.app", desc: "Free open-source read-later app that syncs with Obsidian and Logseq." },
+    { name: "Readwise", url: "https://readwise.io", desc: "Resurfaces your best book and article highlights via daily email." },
+    { name: "Otter.ai", url: "https://otter.ai", desc: "AI-powered meeting transcription and note-taking in real time." },
+    { name: "Loom", url: "https://www.loom.com", desc: "Record quick screen + webcam videos and share with a single link." },
+    { name: "Notion Calendar", url: "https://www.notion.so/product/calendar", desc: "Clean calendar that integrates natively with your Notion workspace." },
+    { name: "Linear", url: "https://linear.app", desc: "Blazingly fast issue tracker built for software teams." },
+    { name: "Height", url: "https://height.app", desc: "Project management with AI that automatically fills task details for you." },
+    { name: "Taskade", url: "https://www.taskade.com", desc: "AI-powered project management with mind maps, lists, and video chat." },
+    { name: "Reclaim.ai", url: "https://reclaim.ai", desc: "AI calendar tool that automatically schedules tasks and habits." },
+    { name: "Cleanshot X", url: "https://cleanshot.com", desc: "The best screenshot and screen recording tool for Mac — wildly underrated." },
+    { name: "Merlin Bird ID", url: "https://merlin.allaboutbirds.org", desc: "Shazam for birds — identify any bird by its song or photo." },
+    { name: "Speechify", url: "https://speechify.com", desc: "Text-to-speech reader that lets you listen to anything at 4.5x speed." },
+    { name: "Descript", url: "https://www.descript.com", desc: "Edit video and audio like a document — delete words to cut clips." },
+    { name: "Whimsical", url: "https://whimsical.com", desc: "Fast wireframes, flowcharts, and mind maps — all in one clean tool." },
+    { name: "Miro", url: "https://miro.com", desc: "Massive online collaborative whiteboard for teams and workshops." },
+    { name: "Zapier", url: "https://zapier.com", desc: "Automate workflows between 6,000+ apps without writing code." },
+    { name: "Make (Integromat)", url: "https://www.make.com", desc: "Powerful visual automation builder for complex multi-step workflows." },
+    { name: "Cal.com", url: "https://cal.com", desc: "Open-source Calendly alternative — own your scheduling link." },
+    { name: "Savvycal", url: "https://savvycal.com", desc: "Scheduling tool that shows your availability overlapping with invitees'." },
+    { name: "Cleanly", url: "https://getcleanly.com", desc: "Declutter and organize your digital files automatically." },
+    { name: "Unroll.me", url: "https://unroll.me", desc: "Unsubscribe from email lists in bulk and roll others into a daily digest." },
+    { name: "Typeform", url: "https://www.typeform.com", desc: "Beautiful conversational forms and surveys people actually enjoy filling out." },
+    { name: "Tally", url: "https://tally.so", desc: "Free Typeform alternative that's simple, powerful, and unlimited." },
+    { name: "Craft", url: "https://www.craft.do", desc: "Stunning document editor built for Apple devices with real-time collab." },
+    { name: "Anytype", url: "https://anytype.io", desc: "Local-first open-source Notion alternative that works offline." },
+    { name: "Heptabase", url: "https://heptabase.com", desc: "Spatial canvas note-taking app for learning complex subjects visually." },
+    { name: "Capacities", url: "https://capacities.io", desc: "Note-taking app built around object types — people, books, projects." },
+    { name: "Sunsama", url: "https://sunsama.com", desc: "Daily planning ritual tool that pulls tasks from all your other apps." },
+    { name: "Morgen", url: "https://morgen.so", desc: "Unified calendar + task manager that brings everything into one view." },
+    { name: "Routine", url: "https://routine.co", desc: "Combines calendar, tasks, and notes into one keyboard-driven workflow." },
+    { name: "Session", url: "https://www.stayinsession.com", desc: "Mac focus timer with Pomodoro, website blocking, and session analytics." },
+    { name: "Tinymind", url: "https://tinymind.me", desc: "Minimalist free thought-capture tool that stores everything in GitHub." },
+    { name: "Heynote", url: "https://heynote.com", desc: "Dedicated scratch pad for developers — persistent notepad per language." },
+    { name: "Raycast", url: "https://www.raycast.com", desc: "Mac launcher that replaces Spotlight — control everything from your keyboard." },
+  ],
+
+  creative: [
+    { name: "Uiverse", url: "https://uiverse.io", desc: "Massive open-source library of beautiful CSS and Tailwind UI elements." },
+    { name: "Godly", url: "https://godly.website", desc: "Curated collection of the most beautiful websites on the internet." },
+    { name: "Awwwards", url: "https://www.awwwards.com", desc: "Awards and showcase for the world's best designed and most creative websites." },
+    { name: "Dribbble", url: "https://dribbble.com", desc: "Portfolio platform where designers share their latest work and UI shots." },
+    { name: "Behance", url: "https://www.behance.net", desc: "Adobe's platform for creatives to showcase portfolios across all disciplines." },
+    { name: "Coolors", url: "https://coolors.co", desc: "Instantly generate beautiful color palettes with a single press of the spacebar." },
+    { name: "Happy Hues", url: "https://www.happyhues.co", desc: "Color palettes shown in the context of real website UI — see them in action." },
+    { name: "Realtime Colors", url: "https://www.realtimecolors.com", desc: "Visualize your color palette on a real website UI before committing." },
+    { name: "Font Pair", url: "https://www.fontpair.co", desc: "Beautiful Google Font pairings curated for designers and developers." },
+    { name: "Fontjoy", url: "https://fontjoy.com", desc: "AI-generated font pairings — generate and shuffle until you find the one." },
+    { name: "Wordmark.it", url: "https://wordmark.it", desc: "Type your brand name and preview it in every font installed on your computer." },
+    { name: "Lottiefiles", url: "https://lottiefiles.com", desc: "Free library of lightweight JSON animations for apps and websites." },
+    { name: "Spline", url: "https://spline.design", desc: "Design interactive 3D scenes in the browser — no code required." },
+    { name: "Rive", url: "https://rive.app", desc: "Create real-time interactive animations that run everywhere." },
+    { name: "Haikei", url: "https://haikei.app", desc: "Generate unique SVG backgrounds, blobs, waves, and shapes instantly." },
+    { name: "Squoosh", url: "https://squoosh.app", desc: "Google's image compression tool — shrink images massively in the browser." },
+    { name: "Remove.bg", url: "https://www.remove.bg", desc: "Remove image backgrounds instantly with AI — surprisingly accurate." },
+    { name: "Canva", url: "https://www.canva.com", desc: "Drag-and-drop design platform for non-designers — endlessly useful." },
+    { name: "Adobe Express", url: "https://www.adobe.com/express", desc: "Free Adobe design tool for quick social posts, logos, and videos." },
+    { name: "Photopea", url: "https://www.photopea.com", desc: "Full Photoshop-like editor that runs entirely in the browser for free." },
+    { name: "Figma Community", url: "https://www.figma.com/community", desc: "Free design templates, UI kits, and plugins from the Figma community." },
+    { name: "Pexels", url: "https://www.pexels.com", desc: "Massive library of completely free high-quality stock photos and videos." },
+    { name: "Unsplash", url: "https://unsplash.com", desc: "Beautiful free-to-use photography from talented photographers worldwide." },
+    { name: "Storyset", url: "https://storyset.com", desc: "Free customizable illustrated scenes for projects — export as SVG or PNG." },
+    { name: "Undraw", url: "https://undraw.co", desc: "Open-source SVG illustrations for any idea — change color instantly." },
+    { name: "Blush Design", url: "https://blush.design", desc: "Curated illustration collections from artists worldwide — mix and remix." },
+    { name: "Illustrations.co", url: "https://illlustrations.co", desc: "100 free open-source illustrations in a vibrant fun style." },
+    { name: "Noise & Texture", url: "https://www.noiseandtexture.com", desc: "Generate beautiful grain texture overlays for your designs." },
+    { name: "Glassmorphism CSS", url: "https://ui.glass/generator", desc: "Generate glassmorphism CSS effects with a live visual preview." },
+    { name: "Neumorphism.io", url: "https://neumorphism.io", desc: "Generate soft-UI neumorphism CSS box shadows visually." },
+    { name: "Clippy CSS", url: "https://bennettfeely.com/clippy", desc: "Visual CSS clip-path editor — create any shape with polygon, circle, ellipse." },
+    { name: "Fancy Border Radius", url: "https://9elements.github.io/fancy-border-radius", desc: "Create organic blob shapes by tweaking CSS border-radius values." },
+    { name: "Wicked Backgrounds", url: "https://wickedbackgrounds.com", desc: "Generate animated SVG wave backgrounds for your websites." },
+    { name: "CSS Pattern", url: "https://css-pattern.com", desc: "Beautiful pure-CSS background pattern library — copy and paste." },
+    { name: "Mesher", url: "https://csshero.org/mesher", desc: "CSS mesh gradient generator — create rich colorful backgrounds instantly." },
+    { name: "Gradient.style", url: "https://gradient.style", desc: "Next-generation CSS gradient generator with Oklab color space support." },
+    { name: "Shots.so", url: "https://shots.so", desc: "Create beautiful mockup screenshots for apps, websites, and products." },
+    { name: "Rotato", url: "https://rotato.app", desc: "Create stunning 3D device mockup videos and GIFs online." },
+    { name: "Pikimov", url: "https://pikimov.com", desc: "Free online motion design and animation tool — lightweight After Effects." },
+    { name: "Pixelhunter", url: "https://pixelhunter.io", desc: "AI image resizer that automatically crops images for 100+ social media sizes." },
+  ],
+
+  learning: [
+    { name: "Khan Academy", url: "https://www.khanacademy.org", desc: "Free world-class education in math, science, and humanities for everyone." },
+    { name: "Brilliant", url: "https://brilliant.org", desc: "Interactive problem-solving courses in math, science, and computer science." },
+    { name: "Coursera", url: "https://www.coursera.org", desc: "University-level courses from Stanford, MIT, and top institutions worldwide." },
+    { name: "MIT OpenCourseWare", url: "https://ocw.mit.edu", desc: "Free access to virtually all MIT course materials — undergraduate to grad level." },
+    { name: "3Blue1Brown", url: "https://www.3blue1brown.com", desc: "Stunning visual math explanations — the best math channel on the internet." },
+    { name: "Explained Visually", url: "https://setosa.io/ev", desc: "Interactive visual explanations of complex mathematical concepts." },
+    { name: "Explorable Explanations", url: "https://explorabl.es", desc: "Curated library of interactive essays that let you play with ideas." },
+    { name: "The Pudding", url: "https://pudding.cool", desc: "Visual essays that explain complex culture and data through interactive charts." },
+    { name: "Our World in Data", url: "https://ourworldindata.org", desc: "Research and data on the world's biggest problems — beautifully visualized." },
+    { name: "Bartleby", url: "https://www.bartleby.com", desc: "Free access to classic literature, reference books, and poetry." },
+    { name: "Project Gutenberg", url: "https://www.gutenberg.org", desc: "Over 70,000 free ebooks of classic literature with expired copyright." },
+    { name: "Standard Ebooks", url: "https://standardebooks.org", desc: "Free, beautifully formatted, carefully proofread public domain ebooks." },
+    { name: "Librivox", url: "https://librivox.org", desc: "Free public domain audiobooks read by volunteers — huge catalog." },
+    { name: "Anki Web", url: "https://ankiweb.net", desc: "Spaced repetition flashcard system for memorizing anything effectively." },
+    { name: "Ncase.me", url: "https://ncase.me", desc: "Interactive explorations on empathy, game theory, and social systems." },
+    { name: "Neal.fun", url: "https://neal.fun", desc: "Creative interactive web experiments that teach through play." },
+    { name: "Setosa.io", url: "https://setosa.io", desc: "Visual explanations of statistics and machine learning concepts." },
+    { name: "Metacademy", url: "https://metacademy.org", desc: "Learning roadmaps for machine learning with dependency graphs." },
+    { name: "Crash Course", url: "https://www.youtube.com/crashcourse", desc: "Fast-paced educational video series covering nearly every school subject." },
+    { name: "Duolingo", url: "https://www.duolingo.com", desc: "Gamified language learning in 40+ languages — daily streaks keep you going." },
+    { name: "Clozemaster", url: "https://www.clozemaster.com", desc: "Advanced language learning through fill-in-the-blank sentence practice." },
+    { name: "Wren", url: "https://projectwren.com", desc: "Learn your personal carbon footprint with interactive calculators." },
+    { name: "Marginnote", url: "https://www.marginnote.com", desc: "PDF reader that lets you build a mind map from your annotations." },
+    { name: "Shortform", url: "https://www.shortform.com", desc: "Deep book summaries with critical analysis — not just highlights." },
+    { name: "Blinkist", url: "https://www.blinkist.com", desc: "Key insights from 5,000+ non-fiction books in 15-minute audio summaries." },
+    { name: "Complexity Explained", url: "https://complexityexplained.github.io", desc: "Beautiful illustrated guide to the science of complex systems." },
+    { name: "CS50", url: "https://cs50.harvard.edu", desc: "Harvard's legendary free intro to computer science — best beginner course ever." },
+    { name: "Odin Project", url: "https://www.theodinproject.com", desc: "Free full-stack web development curriculum built by an open-source community." },
+    { name: "FreeCodeCamp", url: "https://www.freecodecamp.org", desc: "Learn to code for free — 3,000 hours of lessons and certifications." },
+    { name: "Roadmap.sh", url: "https://roadmap.sh", desc: "Community-built learning roadmaps for every tech career path." },
+    { name: "Typing Club", url: "https://www.typingclub.com", desc: "Learn touch typing with interactive lessons — free and no signup needed." },
+    { name: "Keybr", url: "https://www.keybr.com", desc: "Typing practice that adapts to your weak keys using statistical analysis." },
+    { name: "Monkeytype", url: "https://monkeytype.com", desc: "Minimalist typing speed test with beautiful customization options." },
+    { name: "Wikiwand", url: "https://www.wikiwand.com", desc: "Wikipedia with a beautiful modern interface — same content, way better reading experience." },
+    { name: "PhilosophyBro", url: "https://philosophybro.com", desc: "Major philosophers and their ideas explained in plain, funny language." },
+  ],
+
+  weird: [
+    { name: "Pointer Pointer", url: "https://pointerpointer.com", desc: "Move your cursor anywhere and it finds a photo of someone pointing at it." },
+    { name: "Is it Christmas?", url: "https://isitchristmas.com", desc: "One of the most visited single-purpose websites ever — just answers the question." },
+    { name: "Staggering Beauty", url: "https://www.staggeringbeauty.com", desc: "Shake your mouse fast and experience something very unexpected." },
+    { name: "Koalas to the Max", url: "https://www.koalastothemax.com", desc: "Hover over circles and they split into smaller ones revealing a hidden image." },
+    { name: "Eel Slap!", url: "https://www.eelslap.com", desc: "Move your mouse to slap a man with an eel at variable speed — strangely satisfying." },
+    { name: "Patience Is a Virtue", url: "https://patience.is-a.virtue.camera", desc: "Website that makes you wait three minutes before doing anything." },
+    { name: "Find the Invisible Cow", url: "https://findtheinvisiblecow.com", desc: "Move your mouse to hear the cow — closer = louder. Inexplicably addictive." },
+    { name: "Cat Bounce", url: "https://cat-bounce.com", desc: "Cats raining and bouncing — you can throw them around the screen." },
+    { name: "Falling Falling", url: "https://fallingfalling.com", desc: "An infinite neon scroll that hypnotizes you — don't look too long." },
+    { name: "Weave Silk", url: "https://weavesilk.com", desc: "Draw symmetrical silk-like patterns that shimmer and morph beautifully." },
+    { name: "Patatap", url: "https://patatap.com", desc: "Press keyboard keys to create sounds and geometric animations." },
+    { name: "Dog CEO API", url: "https://dog.ceo/dog-api", desc: "Endless random dog photos via a public API — the purest thing online." },
+    { name: "Bored Button", url: "https://www.boredbutton.com", desc: "Click when bored and get teleported to a random fun website instantly." },
+    { name: "Hacker Typer", url: "https://hackertyper.net", desc: "Type randomly and look like a movie hacker — great for pranks." },
+    { name: "Geek Typer", url: "https://geektyper.com", desc: "More elaborate hacker simulator with different movie-style interfaces." },
+    { name: "Drench", url: "https://drench.io", desc: "Color-flood strategy puzzle where you conquer a board in limited moves." },
+    { name: "Zoomquilt", url: "https://zoomquilt.org", desc: "An infinite collaborative painting you can endlessly zoom into." },
+    { name: "Zoomquilt 2", url: "https://zoomquilt2.com", desc: "Sequel to Zoomquilt with a completely new endless painted world to explore." },
+    { name: "The Deep Sea", url: "https://neal.fun/deep-sea", desc: "Scroll down into the ocean and discover creatures at each depth level." },
+    { name: "Life Stats", url: "https://neal.fun/life-stats", desc: "Enter your birthday and see wild statistics about your life in real time." },
+    { name: "Draw a Perfect Circle", url: "https://neal.fun/perfect-circle", desc: "Try to draw a perfect circle and get rated on how close you came." },
+    { name: "Absurd Trolley Problems", url: "https://neal.fun/absurd-trolley-problems", desc: "Increasingly absurd moral dilemmas involving runaway trolleys." },
+    { name: "Password Game", url: "https://neal.fun/password-game", desc: "Follow increasingly insane rules to create a password — internet sensation." },
+    { name: "Most Dangerous Writing App", url: "https://www.squibler.io/dangerous-writing-prompt-app", desc: "Stop typing and everything you wrote gets deleted — brutal productivity hack." },
+    { name: "Silk", url: "https://weavesilk.com", desc: "Interactive generative art — move your mouse to create glowing silk patterns." },
+    { name: "What Colour Is It?", url: "https://whatcolourisit.scn9a.org", desc: "The current time displayed as a constantly changing hex color code." },
+    { name: "This Is Sand", url: "https://thisissand.com", desc: "Click to pour colorful sand and build stratified layers — meditative." },
+    { name: "Rainymood", url: "https://rainymood.com", desc: "Ambient rain sounds to help you focus, sleep, or relax instantly." },
+    { name: "A Soft Murmur", url: "https://asoftmurmur.com", desc: "Mix ambient sounds like rain, waves, fire, and coffee shop noise." },
+    { name: "I Miss My Bar", url: "https://imissmybar.com", desc: "Recreate the atmosphere of a bar with ambient sounds and music." },
+    { name: "Coffitivity", url: "https://coffitivity.com", desc: "Coffee shop ambient noise scientifically shown to boost creativity." },
+    { name: "Noisli", url: "https://www.noisli.com", desc: "Mix background noise and colors to boost your focus and relaxation." },
+    { name: "Soundrown", url: "https://soundrown.com", desc: "Clean ambient sound mixer with coffee shop, rain, ocean, and more." },
+    { name: "Ambient Mixer", url: "https://www.ambient-mixer.com", desc: "Create and share custom ambient sound environments — thousands available." },
+    { name: "Typehere.io", url: "https://typehere.co", desc: "Distraction-free dark writing space that makes satisfying mechanical keyboard sounds." },
+    { name: "Onemillioncheckboxes", url: "https://onemillioncheckboxes.com", desc: "Shared canvas of a million checkboxes — everyone checks and unchecks in real time." },
+    { name: "Endless Horse", url: "https://endless.horse", desc: "A horse with infinitely long legs that scroll forever." },
+    { name: "Is My Computer On?", url: "https://ismy.computer", desc: "Single purpose website — it tells you if your computer is on." },
+    { name: "Longdogechallenge", url: "https://longdogechallenge.com", desc: "Scroll sideways to see how long the doge can stretch — it never ends." },
+    { name: "Planet.osm", url: "https://planet.openstreetmap.org", desc: "Download the entire map of Earth — 140GB of every road ever mapped." },
+  ],
+
+  music: [
+    { name: "Soundcloud", url: "https://soundcloud.com", desc: "Discover independent artists and underground music you won't find anywhere else." },
+    { name: "Bandcamp", url: "https://bandcamp.com", desc: "Buy music directly from artists — best platform for indie and underground acts." },
+    { name: "Musicmap", url: "https://musicmap.info", desc: "Visual genealogy of all popular music genres and their relationships." },
+    { name: "Every Noise at Once", url: "https://everynoise.com", desc: "Scatter plot of 6,000+ music genres — click any to hear a sample." },
+    { name: "Musescore", url: "https://musescore.com", desc: "Massive library of free sheet music — search, play, and download." },
+    { name: "Musictheory.net", url: "https://www.musictheory.net", desc: "Free interactive music theory lessons from beginner to advanced." },
+    { name: "Hooktheory", url: "https://www.hooktheory.com", desc: "Learn songwriting through the chord progressions of popular songs." },
+    { name: "Chrome Music Lab", url: "https://musiclab.chromeexperiments.com", desc: "Google's collection of musical experiments that make music accessible to everyone." },
+    { name: "Blob Opera", url: "https://artsandculture.google.com/experiment/blob-opera/AAHWrq360NcGbw", desc: "Drag colorful blobs to create four-part harmony opera with real singers' voices." },
+    { name: "Poolside FM", url: "https://poolside.fm", desc: "Retro '80s computer aesthetic with a curated lo-fi summer vibe soundtrack." },
+    { name: "Lofi.cafe", url: "https://lofi.cafe", desc: "Beautiful lo-fi music player with multiple chill aesthetic room themes." },
+    { name: "Endel", url: "https://endel.io", desc: "AI generates personalized soundscapes for focus, sleep, and relaxation." },
+    { name: "Brain.fm", url: "https://www.brain.fm", desc: "Functional music scientifically designed to help your brain focus or sleep." },
+    { name: "Musicforprogramming", url: "https://musicforprogramming.net", desc: "Curated music mixes designed specifically for programming sessions." },
+    { name: "MIDI.city", url: "https://midi.city", desc: "Play a MIDI synthesizer with a beautiful interface directly in the browser." },
+    { name: "Beepbox", url: "https://www.beepbox.co", desc: "Make chiptune music in the browser — saves entire songs in the URL." },
+    { name: "Bosca Ceoil", url: "https://boscaceoil.net", desc: "Simple and fun music creation tool for beginners — export to MIDI." },
+    { name: "Splice", url: "https://splice.com", desc: "Sample library and DAG plugin marketplace used by professional producers." },
+    { name: "Looperman", url: "https://www.looperman.com", desc: "Free loop and acapella library contributed by producers worldwide." },
+    { name: "Audiotool", url: "https://www.audiotool.com", desc: "Full browser-based music production studio with synthesizers and drum machines." },
+    { name: "Incredibox", url: "https://www.incredibox.com", desc: "Create beatbox music by dragging sounds onto animated characters." },
+    { name: "Song Exploder", url: "https://songexploder.net", desc: "Musicians break down their songs layer by layer — podcast meets analysis." },
+    { name: "Musixmatch", url: "https://www.musixmatch.com", desc: "The world's largest lyrics catalog — synced in real time with music apps." },
+    { name: "Tunebat", url: "https://tunebat.com", desc: "Find the key, BPM, and energy of any song on Spotify instantly." },
+    { name: "Chosic", url: "https://www.chosic.com", desc: "Discover music based on mood, genre, or similar artists — deep recommendations." },
+  ],
+
+  visual: [
+    { name: "Artbreeder", url: "https://www.artbreeder.com", desc: "Blend and evolve images with AI — create faces, landscapes, and characters." },
+    { name: "Nightcafe", url: "https://creator.nightcafe.studio", desc: "AI art generator with multiple models and a social community to share results." },
+    { name: "Dezgo", url: "https://dezgo.com", desc: "Fast free AI image generator powered by Stable Diffusion — no signup." },
+    { name: "Google Arts & Culture", url: "https://artsandculture.google.com", desc: "Explore 2,000+ museums and their entire collections in ultra-high resolution." },
+    { name: "Smartify", url: "https://www.smartify.org", desc: "Art museum companion app — point your camera at art and get instant info." },
+    { name: "The Metropolitan Museum", url: "https://www.metmuseum.org/art/collection", desc: "Free access to 400,000+ artworks from the Met's collection in high resolution." },
+    { name: "Rijksmuseum", url: "https://www.rijksmuseum.nl/en/rijksstudio", desc: "Download and remix 700,000 masterworks from Amsterdam's Rijksmuseum." },
+    { name: "Europeana", url: "https://www.europeana.eu", desc: "50+ million digitized artworks, books, music, and videos from European culture." },
+    { name: "NASA Image Gallery", url: "https://images.nasa.gov", desc: "Free high-resolution images and videos from every NASA mission ever." },
+    { name: "APOD", url: "https://apod.nasa.gov", desc: "NASA's Astronomy Picture of the Day — a different stunning space image daily." },
+    { name: "Earth View", url: "https://earthview.withgoogle.com", desc: "Stunning satellite imagery from Google Earth — one beautiful location at a time." },
+    { name: "Satellite Map", url: "https://satellites.pro", desc: "High-resolution satellite imagery viewer with better detail than Google Maps." },
+    { name: "Blue Marble", url: "https://visibleearth.nasa.gov", desc: "NASA's visible Earth — satellite images of our planet in stunning detail." },
+    { name: "Glitché", url: "https://glitche.com", desc: "Apply real glitch art effects to photos — corrupted aesthetic in seconds." },
+    { name: "Duotone by Shapefactory", url: "https://duotone.shapefactory.co", desc: "Create duotone versions of any photo with beautiful color pair presets." },
+    { name: "Tinter", url: "https://tinter.uxie.io", desc: "Generate tint and shade variations from any hex color instantly." },
+    { name: "Huemint", url: "https://huemint.com", desc: "AI generates branded color palettes for websites, logos, and graphics." },
+    { name: "Paletter", url: "https://paletter.app", desc: "Extract a beautiful color palette from any image you upload." },
+    { name: "Brandfetch", url: "https://brandfetch.com", desc: "Download high-quality logos, colors, and brand assets from any company." },
+    { name: "Logoipsum", url: "https://logoipsum.com", desc: "Free placeholder logo SVGs for design mockups — no attribution needed." },
+    { name: "Illustrations Universe", url: "https://illustrationsuniverse.com", desc: "Curated collection of free illustration packs from across the design community." },
+    { name: "Pixabay", url: "https://pixabay.com", desc: "3+ million free stock photos, illustrations, vectors, and videos." },
+    { name: "Vecteezy", url: "https://www.vecteezy.com", desc: "Free vector art, stock photos, and stock videos — massive library." },
+    { name: "SVGRepo", url: "https://www.svgrepo.com", desc: "Half a million open-source SVG vectors — searchable and free to use." },
+    { name: "Iconbuddy", url: "https://iconbuddy.app", desc: "Search and download from 200,000+ free open-source icons in one place." },
+    { name: "Phosphor Icons", url: "https://phosphoricons.com", desc: "Beautiful flexible icon family with multiple weights — open source." },
+    { name: "Tabler Icons", url: "https://tabler-icons.io", desc: "5,000+ free SVG icons — consistent style, multiple sizes and strokes." },
+    { name: "Heroicons", url: "https://heroicons.com", desc: "Beautiful hand-crafted SVG icons from the makers of Tailwind CSS." },
+    { name: "World Vector Logo", url: "https://worldvectorlogo.com", desc: "Brand logos in vector format — thousands of brands ready to download." },
+    { name: "Screenlane", url: "https://screenlane.com", desc: "UI design inspiration from the best mobile apps — searchable by pattern." },
+  ],
+
+  dev: [
+    { name: "CodePen", url: "https://codepen.io", desc: "Front-end playground where developers share HTML, CSS, and JS experiments." },
+    { name: "JSFiddle", url: "https://jsfiddle.net", desc: "Quick online JavaScript testing environment for sharing code snippets." },
+    { name: "StackBlitz", url: "https://stackblitz.com", desc: "Full VS Code environment in the browser — spin up any JS framework instantly." },
+    { name: "Replit", url: "https://replit.com", desc: "Collaborative browser IDE that runs any language without local setup." },
+    { name: "Regex101", url: "https://regex101.com", desc: "Test and debug regular expressions with real-time matching and explanations." },
+    { name: "Crontab.guru", url: "https://crontab.guru", desc: "The simplest way to understand cron schedule expressions — visual translator." },
+    { name: "Explainshell", url: "https://explainshell.com", desc: "Paste any shell command and it explains each part from man pages." },
+    { name: "DevDocs", url: "https://devdocs.io", desc: "Unified API documentation browser for 100+ tools — works offline." },
+    { name: "Cheatography", url: "https://cheatography.com", desc: "Thousands of free cheat sheets for every programming language and tool." },
+    { name: "Quickref.me", url: "https://quickref.me", desc: "Beautiful quick reference cheat sheets for developers — clean and fast." },
+    { name: "Overapi.com", url: "https://overapi.com", desc: "Massive collection of API cheat sheets for every major language and framework." },
+    { name: "JSON Formatter", url: "https://jsonformatter.curiousconcept.com", desc: "Validate, format, and visualize JSON data — essential daily dev tool." },
+    { name: "JSONCrack", url: "https://jsoncrack.com", desc: "Visualize complex JSON, YAML, and CSV as interactive node graphs." },
+    { name: "Transform.tools", url: "https://transform.tools", desc: "Convert between JSON, YAML, GraphQL, TypeScript, and dozens more formats." },
+    { name: "Bundlephobia", url: "https://bundlephobia.com", desc: "Find the cost of adding any npm package — size, tree-shake support, download time." },
+    { name: "Packagephobia", url: "https://packagephobia.com", desc: "Check npm package install size and publish size before you commit." },
+    { name: "Can I Use", url: "https://caniuse.com", desc: "Check browser support for any HTML, CSS, or JavaScript feature." },
+    { name: "CSS Stats", url: "https://cssstats.com", desc: "Enter any URL and get stats and visualizations about its CSS codebase." },
+    { name: "Color Hunt", url: "https://colorhunt.co", desc: "Community color palette platform — new trending palettes every day." },
+    { name: "Tailwind CSS", url: "https://tailwindcss.com", desc: "Utility-first CSS framework — the most popular CSS approach in 2024." },
+    { name: "Shadcn UI", url: "https://ui.shadcn.com", desc: "Copy-paste component library for React built on Radix and Tailwind." },
+    { name: "Flowbite", url: "https://flowbite.com", desc: "Open-source UI components built with Tailwind CSS — 600+ components." },
+    { name: "Supabase", url: "https://supabase.com", desc: "Open-source Firebase alternative — instant Postgres database with a great dashboard." },
+    { name: "Planetscale", url: "https://planetscale.com", desc: "Serverless MySQL platform with branching like Git for your database." },
+    { name: "Railway", url: "https://railway.app", desc: "Deploy any app from a GitHub repo in seconds — stupidly easy hosting." },
+    { name: "Fly.io", url: "https://fly.io", desc: "Deploy Docker apps globally close to users — fast and developer-friendly." },
+    { name: "Webhook.site", url: "https://webhook.site", desc: "Instantly get a unique URL to inspect incoming webhooks and HTTP requests." },
+    { name: "Httpbin.org", url: "https://httpbin.org", desc: "HTTP request and response testing service — essential for API development." },
+    { name: "Hoppscotch", url: "https://hoppscotch.io", desc: "Open-source Postman alternative that runs entirely in the browser." },
+    { name: "Responsively", url: "https://responsively.app", desc: "Test websites on multiple screen sizes simultaneously in one window." },
+    { name: "Metatags.io", url: "https://metatags.io", desc: "Preview and generate meta tags for SEO and social sharing in seconds." },
+    { name: "Lorem.space", url: "https://lorem.space", desc: "Placeholder image API with actual themed images — faces, cats, fashion." },
+    { name: "Readme.so", url: "https://readme.so", desc: "Simple drag-and-drop README builder for GitHub projects." },
+    { name: "Carbon", url: "https://carbon.now.sh", desc: "Create beautiful images of your source code for sharing — customizable themes." },
+    { name: "Ray.so", url: "https://ray.so", desc: "Create gorgeous code screenshots with beautiful color gradients." },
+  ],
+
+  nature: [
+    { name: "Blue Marine Foundation", url: "https://www.bluemarinefoundation.com", desc: "UK charity protecting the ocean through marine reserves and sustainable fishing." },
+    { name: "Coral Reef Watch", url: "https://coralreefwatch.noaa.gov", desc: "NOAA's real-time monitoring of coral bleaching events worldwide." },
+    { name: "Windy", url: "https://www.windy.com", desc: "Breathtaking real-time global weather visualization — wind, rain, waves, air quality." },
+    { name: "Earth Nullschool", url: "https://earth.nullschool.net", desc: "Hypnotic animated global wind and ocean current map updated in real time." },
+    { name: "Lightningmaps", url: "https://www.lightningmaps.org", desc: "Real-time lightning strike map — watch storms as they happen globally." },
+    { name: "Ventusky", url: "https://www.ventusky.com", desc: "Beautiful animated weather map with rain, wind, temperature, and snow layers." },
+    { name: "FlightRadar24", url: "https://www.flightradar24.com", desc: "Live flight tracker showing every commercial plane in the sky right now." },
+    { name: "MarineTraffic", url: "https://www.marinetraffic.com", desc: "Real-time tracking of thousands of ships and vessels around the world." },
+    { name: "ISS Tracker", url: "https://www.n2yo.com/space-station", desc: "Track the International Space Station's exact position over Earth live." },
+    { name: "Satellite Tracker", url: "https://www.n2yo.com", desc: "Track any satellite in Earth orbit — debris, weather sats, spy sats." },
+    { name: "Stellarium Web", url: "https://stellarium-web.org", desc: "Free online planetarium — shows the night sky from anywhere at any time." },
+    { name: "Worldometers", url: "https://www.worldometers.com", desc: "Real-time counters for population, deaths, births, CO2, and global stats." },
+    { name: "Global Forest Watch", url: "https://www.globalforestwatch.org", desc: "Monitor deforestation around the world with satellite data updated weekly." },
+    { name: "iNaturalist", url: "https://www.inaturalist.org", desc: "Identify any plant or animal with your phone and contribute to science." },
+    { name: "GBIF", url: "https://www.gbif.org", desc: "Global biodiversity database with 2+ billion occurrence records of species." },
+    { name: "Pluto.tv", url: "https://pluto.tv", desc: "Free streaming TV with 200+ live channels including nature and science." },
+    { name: "Seabird Tracker", url: "https://seabirdtracker.org", desc: "Follow tracked seabirds as they migrate across the world's oceans." },
+    { name: "Ocean Biodiversity", url: "https://www.obis.org", desc: "Database of all known ocean species with distribution maps worldwide." },
+    { name: "Treedom", url: "https://www.treedom.net", desc: "Plant real trees remotely and watch them grow via geotagged photo updates." },
+    { name: "Watch Duty", url: "https://www.watchduty.org", desc: "Free real-time wildfire tracking and alert system for affected communities." },
+    { name: "Zoom Earth", url: "https://zoom.earth", desc: "Near-real-time satellite imagery of Earth updated multiple times per day." },
+    { name: "Terravion", url: "https://www.terravion.com", desc: "High-resolution aerial crop imagery used by farmers to monitor fields." },
+    { name: "AirVisual", url: "https://www.iqair.com/air-quality-map", desc: "Real-time global air quality map — see pollution levels in any city." },
+    { name: "River Runner", url: "https://river-runner-global.samlearner.com", desc: "Drop a raindrop anywhere on Earth and trace which river it flows to the sea." },
+    { name: "Elevation Finder", url: "https://www.floodmap.net", desc: "Click anywhere on a map to see its exact elevation above sea level." },
+  ],
+
+  mindblowing: [
+    { name: "The Scale of the Universe", url: "https://htwins.net/scale2", desc: "Zoom from quantum foam to the observable universe — scale comprehension shattered." },
+    { name: "Nicky Case: Parable of Polygons", url: "https://ncase.me/polygons", desc: "Interactive simulation showing how small bias leads to massive segregation." },
+    { name: "Evolution of Trust", url: "https://ncase.me/trust", desc: "Game theory explained through an interactive comic about why we trust each other." },
+    { name: "The Moral Machine", url: "https://www.moralmachine.net", desc: "MIT experiment on ethics of self-driving cars — millions have given answers." },
+    { name: "Seeing Theory", url: "https://seeing-theory.brown.edu", desc: "Brown University's visual introduction to probability and statistics." },
+    { name: "Visualizing the Billion", url: "https://www.pagetutor.com/billion/index.html", desc: "Scroll through a visual that makes you actually understand how big a billion is." },
+    { name: "Omo the Homie", url: "https://omothehomie.com", desc: "Scroll down into a beautiful illustrated trip through outer space." },
+    { name: "Wait But Why", url: "https://waitbutwhy.com", desc: "Long-form essays on AI, life, and existence that will completely rearrange your mind." },
+    { name: "LessWrong", url: "https://www.lesswrong.com", desc: "Community blog on rationality, AI alignment, and thinking clearly." },
+    { name: "Brilliant Math & Science Wiki", url: "https://brilliant.org/wiki", desc: "Free encyclopedia of advanced math and science concepts with visual explanations." },
+    { name: "xkcd What If?", url: "https://what-if.xkcd.com", desc: "Scientist answers absurd hypothetical questions with real physics calculations." },
+    { name: "Kerbal Space Program Demo", url: "https://store.steampowered.com/app/220200", desc: "Accidentally learn rocket science by building and crashing spacecraft." },
+    { name: "You Are Not So Smart", url: "https://youarenotsosmart.com", desc: "Podcast and blog exploring cognitive biases and self-delusion." },
+    { name: "Untools", url: "https://untools.co", desc: "Collection of thinking frameworks and mental models for better decisions." },
+    { name: "Farnam Street", url: "https://fs.blog", desc: "Deep writing on mental models, decision-making, and how the world works." },
+    { name: "Ribbonfarm", url: "https://www.ribbonfarm.com", desc: "Long-form independent thinking on culture, technology, and systems." },
+    { name: "Edge.org", url: "https://www.edge.org", desc: "World's leading thinkers answer one big annual question — a mind-expanding archive." },
+    { name: "Complexity Explorer", url: "https://www.complexityexplorer.org", desc: "Santa Fe Institute's free courses on complexity science and emergence." },
+    { name: "Spurious Correlations", url: "https://www.tylervigen.com/spurious-correlations", desc: "Charts showing absurd statistical correlations between completely unrelated things." },
+    { name: "Information is Beautiful", url: "https://informationisbeautiful.net", desc: "David McCandless's stunning data visualizations on complex world topics." },
+    { name: "Flowing Data", url: "https://flowingdata.com", desc: "Nathan Yau's data visualizations and guides on making sense of the world." },
+    { name: "Observable", url: "https://observablehq.com", desc: "Notebook environment for creating and sharing interactive data visualizations." },
+    { name: "Perchance", url: "https://perchance.org", desc: "Generate random things from community-built procedural generators — endless." },
+    { name: "Wolfram Alpha", url: "https://www.wolframalpha.com", desc: "Computational knowledge engine — ask it anything mathematical or factual." },
+    { name: "Explained from First Principles", url: "https://explained-from-first-principles.com", desc: "Deeply rigorous long-form explanations of the internet, email, and more." },
+    { name: "The Fallen of WWII", url: "https://www.fallen.io/ww2", desc: "Data-driven animated documentary of WWII casualties — harrowing and powerful." },
+    { name: "Histography", url: "https://histography.io", desc: "Interactive timeline of all of history sourced from Wikipedia — 14 billion years." },
+    { name: "Timeline of the Far Future", url: "https://en.wikipedia.org/wiki/Timeline_of_the_far_future", desc: "Wikipedia's timeline of what will happen to Earth from 1,000 to 10^100 years." },
+    { name: "Visual Capitalist", url: "https://www.visualcapitalist.com", desc: "Data visualizations and infographics about finance, technology, and the world." },
+    { name: "The True Size Of", url: "https://www.thetruesize.com", desc: "Drag countries around a Mercator map to compare their true relative sizes." },
+  ]
+};
+
+let currentCategory = 'all';
+let searchQuery = '';
+
+function getDomain(url) {
+  try {
+    return new URL(url).hostname.replace('www.', '');
+  } catch { return ''; }
+}
+
+function createCard(site, globalNum) {
+  const domain = getDomain(site.url);
+  const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+  return `
+    <div class="site-card" data-name="${site.name.toLowerCase()}" data-desc="${site.desc.toLowerCase()}">
+      <div class="card-top">
+        <div class="site-favicon">
+          <img src="${faviconUrl}" alt="" onerror="this.style.display='none';this.parentElement.textContent='🌐'" loading="lazy">
+        </div>
+        <span class="site-name">${site.name}</span>
+        <span class="site-num">#${globalNum}</span>
+      </div>
+      <p class="site-desc">${site.desc}</p>
+      <div class="card-footer">
+        <a class="visit-link" href="${site.url}" target="_blank" rel="noopener">Visit →</a>
+        <button class="copy-btn" onclick="copyLink(this, '${site.url}')">Copy</button>
+      </div>
+    </div>`;
+}
+
+function buildGrids() {
+  let globalNum = 1;
+  const cats = ['fun','productivity','creative','learning','weird','music','visual','dev','nature','mindblowing'];
+  cats.forEach(cat => {
+    const grid = document.getElementById('grid-' + cat);
+    if (!grid) return;
+    let html = '';
+    sites[cat].forEach(site => {
+      html += createCard(site, globalNum++);
+    });
+    grid.innerHTML = html;
+  });
+}
+
+function getAllCards() {
+  return document.querySelectorAll('.site-card');
+}
+
+function handleSearch() {
+  searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+  filterAndShow();
+}
+
+function filterCategory(cat, btn) {
+  currentCategory = cat;
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  filterAndShow();
+}
+
+function filterAndShow() {
+  const sections = document.querySelectorAll('.category-section');
+  let totalVisible = 0;
+
+  sections.forEach(section => {
+    const sectionCat = section.dataset.category;
+    const catMatch = currentCategory === 'all' || currentCategory === sectionCat;
+    if (!catMatch) {
+      section.classList.add('hidden');
+      return;
+    }
+    section.classList.remove('hidden');
+
+    const cards = section.querySelectorAll('.site-card');
+    let sectionVisible = 0;
+    cards.forEach(card => {
+      const nameMatch = card.dataset.name.includes(searchQuery);
+      const descMatch = card.dataset.desc.includes(searchQuery);
+      if (!searchQuery || nameMatch || descMatch) {
+        card.classList.remove('hidden');
+        sectionVisible++;
+        totalVisible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    if (sectionVisible === 0 && searchQuery) {
+      section.classList.add('hidden');
+    }
+  });
+
+  document.getElementById('searchCount').textContent = totalVisible + ' site' + (totalVisible !== 1 ? 's' : '');
+  const noResults = document.getElementById('noResults');
+  noResults.classList.toggle('show', totalVisible === 0 && searchQuery !== '');
+}
+
+function copyLink(btn, url) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+function surpriseMe() {
+  const allCats = Object.keys(sites);
+  const randomCat = allCats[Math.floor(Math.random() * allCats.length)];
+  const catSites = sites[randomCat];
+  const randomSite = catSites[Math.floor(Math.random() * catSites.length)];
+  window.open(randomSite.url, '_blank', 'noopener');
+}
+
+buildGrids();
+filterAndShow();
+</script>
+</body>
+</html>

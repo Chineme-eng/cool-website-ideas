@@ -70,6 +70,12 @@
   }
 
   /* SURPRISE BTN */
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
   .surprise-btn {
     display: inline-flex;
     align-items: center;
@@ -83,11 +89,63 @@
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    margin-top: 24px;
+    margin-top: 0;
     transition: all 0.2s;
     text-decoration: none;
   }
   .surprise-btn:hover { background: var(--orange-light); transform: translateY(-1px); }
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--border);
+    padding: 12px 18px;
+    border-radius: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .theme-toggle:hover { background: var(--cream-darker); transform: translateY(-1px); }
+
+  body[data-theme="dark"] {
+    --cream: #16120f;
+    --cream-dark: #211b17;
+    --cream-darker: #2b241e;
+    --black: #f4ede3;
+    --black-soft: #e8ddcf;
+    --orange: #ff8e3c;
+    --orange-light: #ff9f5b;
+    --orange-pale: rgba(255, 142, 60, 0.14);
+    --muted: #b7a999;
+    --border: rgba(244, 237, 227, 0.12);
+  }
+  body[data-theme="dark"] .search-bar,
+  body[data-theme="dark"] .site-card {
+    background: #1d1814;
+  }
+  body[data-theme="dark"] .site-card:hover {
+    box-shadow: 0 10px 34px rgba(0,0,0,0.35);
+  }
+  body[data-theme="dark"] .sticky-nav {
+    background: rgba(22,18,15,0.92);
+  }
+  body[data-theme="dark"] .nav-btn:hover,
+  body[data-theme="dark"] .theme-toggle:hover {
+    background: #2a231d;
+  }
+  body[data-theme="dark"] .nav-btn.active {
+    background: var(--black);
+    color: #16120f;
+    border-color: var(--black);
+  }
+  body[data-theme="dark"] .nav-btn:not(.active) .count {
+    background: #2a231d;
+    color: var(--muted);
+  }
 
   /* SEARCH */
   .search-wrap {
@@ -341,6 +399,8 @@
     .search-wrap, main { padding-left: 20px; padding-right: 20px; }
     .sticky-nav { padding: 0 20px; }
     .hero-count { display: none; }
+    .hero-actions { width: 100%; }
+    .theme-toggle, .surprise-btn { justify-content: center; }
     .sites-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -351,7 +411,10 @@
 <div>
 <div class="hero-title">Web<span>Vault</span></div>
 <p class="hero-sub"><span id="heroSubCount"></span> weird, wonderful, and genuinely useful websites the internet doesn't talk about enough.</p>
+<div class="hero-actions">
 <button class="surprise-btn" onclick="surpriseMe()">⚡ Surprise Me</button>
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+</div>
 </div>
 <div class="hero-count" id="heroCount"></div>
 </div>
@@ -715,55 +778,275 @@ const sites = {
       "name": "Metazooa",
       "url": "https://metazooa.com",
       "desc": "Guess the mystery animal — clues reveal how close you are on the tree of life."
+    },
+    {
+      "name": "Draw Logos From Memory",
+      "url": "https://neal.fun/draw-logos-from-memory",
+      "desc": "Redraw famous logos from memory and instantly see how close you got."
     }
   ],
   "interactive": [
     {
-        "name": "MapCrunch",
-        "url": "https://www.mapcrunch.com",
-        "desc": "Teleport to random Street View locations around the world and explore them instantly."
+      "name": "MapCrunch",
+      "url": "https://www.mapcrunch.com",
+      "desc": "Teleport to random Street View locations around the world and explore them instantly."
     },
     {
-        "name": "Sandspiel",
-        "url": "https://sandspiel.club",
-        "desc": "Physics sandbox where you draw with elements like fire, water, sand, and plants."
+      "name": "Sandspiel",
+      "url": "https://sandspiel.club",
+      "desc": "Physics sandbox where you draw with elements like fire, water, sand, and plants."
     },
     {
-        "name": "Pixel Thoughts",
-        "url": "https://www.pixelthoughts.co",
-        "desc": "Type a worry and watch it drift into space in a one-minute interactive meditation."
+      "name": "Pixel Thoughts",
+      "url": "https://www.pixelthoughts.co",
+      "desc": "Type a worry and watch it drift into space in a one-minute interactive meditation."
     },
     {
-        "name": "Typatone",
-        "url": "https://typatone.com",
-        "desc": "Every letter you type becomes music, turning writing into a playable melody."
+      "name": "Typatone",
+      "url": "https://typatone.com",
+      "desc": "Every letter you type becomes music, turning writing into a playable melody."
     },
     {
-        "name": "Scale of the Universe",
-        "url": "https://scaleofuniverse.com",
-        "desc": "Scroll from the tiniest particles to the largest objects in the universe."
+      "name": "Scale of the Universe",
+      "url": "https://scaleofuniverse.com",
+      "desc": "Scroll from the tiniest particles to the largest objects in the universe."
     },
     {
-        "name": "Emoji Simulator",
-        "url": "https://ncase.me/simulating/",
-        "desc": "Play with cellular automata and interactive simulations in a weird little sandbox."
+      "name": "Emoji Simulator",
+      "url": "https://ncase.me/simulating/",
+      "desc": "Play with cellular automata and interactive simulations in a weird little sandbox."
     },
     {
-        "name": "Experiments with Google",
-        "url": "https://experiments.withgoogle.com",
-        "desc": "Archive of interactive web experiments, creative toys, and browser-based projects."
+      "name": "Experiments with Google",
+      "url": "https://experiments.withgoogle.com",
+      "desc": "Archive of interactive web experiments, creative toys, and browser-based projects."
     },
     {
-        "name": "Cookie Clicker",
-        "url": "https://orteil.dashnet.org/cookieclicker/",
-        "desc": "The legendary incremental browser game where one click turns into absolute chaos."
+      "name": "Cookie Clicker",
+      "url": "https://orteil.dashnet.org/cookieclicker/",
+      "desc": "The legendary incremental browser game where one click turns into absolute chaos."
     },
     {
-        "name": "Radiooooo",
-        "url": "https://radiooooo.com",
-        "desc": "Choose a country and decade, then hear music people there were actually listening to."
+      "name": "Radiooooo",
+      "url": "https://radiooooo.com",
+      "desc": "Choose a country and decade, then hear music people there were actually listening to."
+    },
+    {
+      "name": "Space Elevator",
+      "url": "https://neal.fun/space-elevator",
+      "desc": "Scroll a space elevator from Earth all the way into orbit with satisfying scale."
+    },
+    {
+      "name": "Size of Space",
+      "url": "https://neal.fun/size-of-space",
+      "desc": "Compare planets, stars, and galaxies in a huge interactive size visualizer."
+    },
+    {
+      "name": "Crowds",
+      "url": "https://ncase.me/crowds",
+      "desc": "Interactive simulation that shows how crowds behave and why panic spreads."
+    },
+    {
+      "name": "PlanetMaker",
+      "url": "https://planetmaker.wthr.us",
+      "desc": "Build your own planet and experiment with orbits, moons, and solar systems."
+    },
+    {
+      "name": "Drive & Listen",
+      "url": "https://driveandlisten.app",
+      "desc": "Take slow virtual drives through real cities while local radio plays in the background."
+    },
+    {
+      "name": "WebGL Fluid Simulation",
+      "url": "https://paveldogreat.github.io/WebGL-Fluid-Simulation/",
+      "desc": "Touch and swirl glowing fluid patterns around the screen like a calming lava lamp."
+    },
+    {
+      "name": "Nature Mixer",
+      "url": "https://naturemixer.com",
+      "desc": "Build your own peaceful nature scene with adjustable visuals, weather, and layered sound."
+    },
+    {
+      "name": "Lofi and Games",
+      "url": "https://www.lofiandgames.com/",
+      "desc": "Play cozy low-pressure browser games with chill music and a super calm vibe."
+    },
+    {
+      "name": "Line Rider",
+      "url": "https://www.linerider.com/",
+      "desc": "Draw smooth sled tracks and watch the rider glide through them in a weirdly relaxing loop."
+    },
+    {
+      "name": "Constellation Draw",
+      "url": "https://neal.fun/constellation-draw",
+      "desc": "Draw your own constellations in the sky and watch the stars connect into glowing patterns."
+    },
+    {
+      "name": "Sandboxels",
+      "url": "https://neal.fun/sandboxels",
+      "desc": "Huge falling-sand sandbox where you mix fire, water, chemicals, machines, and total chaos."
+    },
+    {
+      "name": "Size of Life",
+      "url": "https://neal.fun/size-of-life",
+      "desc": "Compare living things at true scale from microscopic organisms to massive animals."
+    },
+    {
+      "name": "I'm Not a Robot",
+      "url": "https://neal.fun/im-not-a-robot",
+      "desc": "A playful CAPTCHA-style experience that keeps getting stranger the more you click."
+    },
+    {
+      "name": "Internet Roadtrip",
+      "url": "https://neal.fun/internet-roadtrip",
+      "desc": "Join a shared online roadtrip where everyone votes where the car goes next."
+    },
+    {
+      "name": "Stimulation Clicker",
+      "url": "https://neal.fun/stimulation-clicker",
+      "desc": "A deliberately overwhelming clicker game that feels like the internet attacking your brain."
+    },
+    {
+      "name": "Wonders of Street View",
+      "url": "https://neal.fun/wonders-of-street-view",
+      "desc": "Jump through bizarre and fascinating places captured on Street View around the world."
+    },
+    {
+      "name": "Design the Next iPhone",
+      "url": "https://neal.fun/design-the-next-iphone",
+      "desc": "Build your own ridiculous next-gen iPhone with cursed features and weird design choices."
+    },
+    {
+      "name": "Let's Settle This",
+      "url": "https://neal.fun/lets-settle-this",
+      "desc": "Vote on classic internet debates and see how everyone else answered."
+    },
+    {
+      "name": "Ambient Chaos",
+      "url": "https://neal.fun/ambient-chaos",
+      "desc": "Mix a bizarre stack of noisy internet sounds into something chaotic and oddly hypnotic."
+    },
+    {
+      "name": "Auction Game",
+      "url": "https://neal.fun/auction-game",
+      "desc": "Try to win auctions without overpaying in a deceptively stressful strategy game."
+    },
+    {
+      "name": "Sell! Sell! Sell!",
+      "url": "https://neal.fun/sell-sell-sell",
+      "desc": "A satirical little market game about timing, panic, hype, and getting out alive."
+    },
+    {
+      "name": "Paper",
+      "url": "https://neal.fun/paper",
+      "desc": "A playful interactive page about paper that turns a simple object into something weirdly fascinating."
+    },
+    {
+      "name": "Solar Beat",
+      "url": "https://neave.com/planetarium/",
+      "desc": "Listen to the planets as musical loops in a sleek interactive solar system."
+    },
+    {
+      "name": "We Become What We Behold",
+      "url": "https://ncase.itch.io/wbwwb",
+      "desc": "Short interactive story about media, fear, and how attention shapes society."
+    },
+    {
+      "name": "Agar.io",
+      "url": "https://agar.io",
+      "desc": "Classic browser multiplayer where you grow by consuming smaller players and dodging bigger ones."
+    },
+    {
+      "name": "The Powder Toy",
+      "url": "https://powdertoy.co.uk",
+      "desc": "Advanced pixel sandbox where physics, fire, explosions, and machines interact in real time."
+    },
+    {
+      "name": "Interactive Line Playground",
+      "url": "https://csh.bz/line/05xp.html",
+      "desc": "Mesmerizing lines react to your cursor with smooth motion that feels oddly calming."
+    },
+    {
+      "name": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com",
+      "desc": "Explore the solar system in a sleek interactive 3D viewer with smooth motion and scale."
+    },
+    {
+      "name": "Human Benchmark",
+      "url": "https://humanbenchmark.com",
+      "desc": "Test your reaction time, memory, verbal recall, and aim in sleek addictive mini challenges."
+    },
+    {
+      "name": "Touch Pianist",
+      "url": "https://touchpianist.com",
+      "desc": "Mash your keyboard and it turns your inputs into surprisingly beautiful classical piano."
+    },
+    {
+      "name": "Sketch Toy",
+      "url": "https://sketchtoy.com",
+      "desc": "Draw simple looping animations and replay every stroke as a clean little sketch movie."
+    },
+    {
+      "name": "Fffffidget",
+      "url": "https://ffffidget.com",
+      "desc": "A polished collection of digital fidget toys that feels weirdly hard to leave."
+    },
+    {
+      "name": "Orb.Farm",
+      "url": "https://orb.farm",
+      "desc": "Build living pixel ecosystems with plants, creatures, and chemistry in a sandbox jar."
+    },
+    {
+      "name": "Window Kill",
+      "url": "https://windowkill.com",
+      "desc": "A browser game where the game spills outside the window and breaks your expectations."
+    },
+    {
+      "name": "Noises Online",
+      "url": "https://noises.online",
+      "desc": "Mix ambient sounds in a clean interface for focus, calm, or background atmosphere."
+    },
+    {
+      "name": "EarthCam",
+      "url": "https://www.earthcam.com",
+      "desc": "Watch live cameras from cities, beaches, skylines, and tourist spots around the world."
+    },
+    {
+      "name": "Orbiting Objects",
+      "url": "https://orbitingobjects.com",
+      "desc": "Launch bodies into orbit and build mesmerizing gravitational patterns."
+    },
+    {
+      "name": "Ball Pool",
+      "url": "https://mrdoob.com/projects/chromeexperiments/ball-pool/",
+      "desc": "Drop endless colorful balls into a physics pool and mess around in 3D space."
+    },
+    {
+      "name": "Flow Field",
+      "url": "https://oimo.io/works/flowfield/",
+      "desc": "Gently stir a flowing particle field that moves like digital smoke."
+    },
+    {
+      "name": "Shortest Path Playground",
+      "url": "https://alexanderperrin.com.au/paper/shortest-path",
+      "desc": "Draw obstacles and watch the shortest route solve itself instantly."
+    },
+    {
+      "name": "Little Alchemy 1",
+      "url": "https://littlealchemy.com",
+      "desc": "The original element-combining toy that still hooks people immediately."
+    },
+    {
+      "name": "Reaction Time Test",
+      "url": "https://humanbenchmark.com/tests/reactiontime",
+      "desc": "Simple but addictive reaction time challenge with instant feedback."
+    },
+    {
+      "name": "Bongo Cat",
+      "url": "https://bongo.cat",
+      "desc": "Tap your keyboard and turn your browser into a tiny musical cat performance."
     }
-],
+  ],
   "productivity": [
     {
       "name": "Notion",
@@ -1341,6 +1624,46 @@ const sites = {
       "name": "PhotoMosh",
       "url": "https://photomosh.com",
       "desc": "Glitch photos, GIFs, and videos live in the browser for bold visual effects."
+    },
+    {
+      "name": "Brush Ninja",
+      "url": "https://brush.ninja",
+      "desc": "Make simple frame-by-frame GIF animations right in the browser."
+    },
+    {
+      "name": "Kleki",
+      "url": "https://kleki.com",
+      "desc": "Fast lightweight painting app that opens instantly and is easy to use."
+    },
+    {
+      "name": "Sketch MetaDemoLab",
+      "url": "https://sketch.metademolab.com",
+      "desc": "Turn rough drawings into moving animations right in the browser."
+    },
+    {
+      "name": "Magenta Demos",
+      "url": "https://magenta.tensorflow.org/demos",
+      "desc": "Interactive music and art experiments you can play with in the browser."
+    },
+    {
+      "name": "ShaderFrog",
+      "url": "https://shaderfrog.com",
+      "desc": "Experiment with live shaders and 3D materials without installing anything."
+    },
+    {
+      "name": "Pink Trombone",
+      "url": "https://dood.al/pinktrombone",
+      "desc": "Simulate the human voice by shaping a virtual vocal tract."
+    },
+    {
+      "name": "Hydra",
+      "url": "https://hydra.ojack.xyz",
+      "desc": "Live-code reactive visuals in the browser and make trippy moving art instantly."
+    },
+    {
+      "name": "Polypad",
+      "url": "https://mathigon.org/polypad",
+      "desc": "Clean interactive canvas for shapes, tiles, and visual math play that also looks great on screen."
     }
   ],
   "learning": [
@@ -1528,6 +1851,21 @@ const sites = {
       "name": "Open Library",
       "url": "https://openlibrary.org",
       "desc": "Borrow millions of books digitally and explore an enormous open catalog."
+    },
+    {
+      "name": "Distill",
+      "url": "https://distill.pub",
+      "desc": "Deep interactive explanations of machine learning and complex technical ideas."
+    },
+    {
+      "name": "Bartosz Ciechanowski",
+      "url": "https://ciechanow.ski",
+      "desc": "Incredible interactive essays explaining engineering, physics, and visual concepts."
+    },
+    {
+      "name": "BetterExplained",
+      "url": "https://betterexplained.com",
+      "desc": "Visual and intuitive explanations for math ideas that usually feel confusing."
     }
   ],
   "weird": [
@@ -1740,6 +2078,71 @@ const sites = {
       "name": "Little Alchemy 2",
       "url": "https://littlealchemy2.com",
       "desc": "Mix elements together to discover hundreds of surprising combinations."
+    },
+    {
+      "name": "Checkbox Olympics",
+      "url": "https://checkboxolympics.com",
+      "desc": "Race strangers by checking boxes as fast as possible in a ridiculous global contest."
+    },
+    {
+      "name": "heeeeeeeey",
+      "url": "https://heeeeeeeey.com",
+      "desc": "An endlessly zooming internet joke site that somehow stays funny."
+    },
+    {
+      "name": "That's the Finger",
+      "url": "https://thatsthefinger.com",
+      "desc": "A weird one-joke website that became internet-famous for its absurd simplicity."
+    },
+    {
+      "name": "Slow Roads",
+      "url": "https://slowroads.io",
+      "desc": "Relaxing endless driving simulator with procedural roads and beautiful scenery."
+    },
+    {
+      "name": "Days Since Incident",
+      "url": "https://neal.fun/days-since-incident",
+      "desc": "Track how long it has been since a random absurd event happened somewhere in the world."
+    },
+    {
+      "name": "Rocks",
+      "url": "https://neal.fun/rocks",
+      "desc": "A tiny weird web toy about rocks that somehow becomes much funnier than it should be."
+    },
+    {
+      "name": "Share This Page",
+      "url": "https://neal.fun/share-this-page",
+      "desc": "A strange experiment about virality, sharing, and what people do when told to spread something."
+    },
+    {
+      "name": "This Person Does Not Exist",
+      "url": "https://thispersondoesnotexist.com",
+      "desc": "Refresh for endless photorealistic faces of people who were never real."
+    },
+    {
+      "name": "This Cat Does Not Exist",
+      "url": "https://thiscatdoesnotexist.com",
+      "desc": "AI-generated cat faces that look real until you stare a little too long."
+    },
+    {
+      "name": "Scream Into the Void",
+      "url": "https://screamintothevoid.com",
+      "desc": "Type your frustrations and launch them into a digital void."
+    },
+    {
+      "name": "Arkadia",
+      "url": "https://arkadia.xyz",
+      "desc": "Walk through surreal browser-based spaces that feel like hidden dream levels."
+    },
+    {
+      "name": "Corndog.io",
+      "url": "https://corndog.io",
+      "desc": "Pure chaotic internet energy in one page."
+    },
+    {
+      "name": "Checkbox Olympics",
+      "url": "https://checkbox.toys/olympics",
+      "desc": "Race others by mashing checkboxes in silly real-time competitions."
     }
   ],
   "music": [
@@ -1874,14 +2277,44 @@ const sites = {
       "desc": "Generate royalty-free music by mood, genre, and length."
     },
     {
-      "name": "Radiooooo",
-      "url": "https://radiooooo.com",
-      "desc": "Pick a country and decade to hear what people there were actually listening to."
-    },
-    {
       "name": "myNoise",
       "url": "https://mynoise.net",
       "desc": "Deep customizable sound generators for focus, sleep, rain, drones, and ambient worlds."
+    },
+    {
+      "name": "Moodil",
+      "url": "https://www.moodil.com/",
+      "desc": "Mix high-quality nature sounds and save your own peaceful background sound combinations."
+    },
+    {
+      "name": "Calmsound",
+      "url": "https://www.calmsound.com/",
+      "desc": "Nature sound recordings for relaxing, sleeping, reading, or just zoning out for a while."
+    },
+    {
+      "name": "Map of Metal",
+      "url": "https://mapofmetal.com",
+      "desc": "Interactive genealogy of metal subgenres with clickable samples and a gloriously chaotic old-web style."
+    },
+    {
+      "name": "Song Maker",
+      "url": "https://musiclab.chromeexperiments.com/Song-Maker",
+      "desc": "Build colorful loops and melodies in seconds with one of the most satisfying music toys online."
+    },
+    {
+      "name": "Chrome Music Lab Rhythm",
+      "url": "https://musiclab.chromeexperiments.com/Rhythm",
+      "desc": "Build percussion patterns in one of Google's simplest and most satisfying music toys."
+    },
+    {
+      "name": "Chrome Music Lab Kandinsky",
+      "url": "https://musiclab.chromeexperiments.com/Kandinsky",
+      "desc": "Draw shapes that become sounds in a colorful synesthetic playground."
+    },
+    {
+      "name": "Virtual Piano",
+      "url": "https://virtualpiano.net",
+      "desc": "Play piano in the browser with your keyboard and easy song mappings."
     }
   ],
   "visual": [
@@ -2034,6 +2467,61 @@ const sites = {
       "name": "Screenlane",
       "url": "https://screenlane.com",
       "desc": "UI design inspiration from the best mobile apps — searchable by pattern."
+    },
+    {
+      "name": "CodePen Trending",
+      "url": "https://codepen.io/trending",
+      "desc": "Browse fresh interactive web experiments and visuals people are building right now."
+    },
+    {
+      "name": "ASCII Flow",
+      "url": "https://asciiflow.com",
+      "desc": "Create clean ASCII diagrams and boxes with a surprisingly satisfying editor."
+    },
+    {
+      "name": "Exquisite Corpse",
+      "url": "https://www.c82.net/work/?id=347",
+      "desc": "Play with an interactive visual art piece inspired by surrealist drawing games."
+    },
+    {
+      "name": "Playform IO Draw",
+      "url": "https://draw.playform.io",
+      "desc": "Turn sketches into expressive generative art experiments."
+    },
+    {
+      "name": "Kandinsky",
+      "url": "https://experiments.withgoogle.com/ai/drum-machine",
+      "desc": "Mix drawing, sound, and machine-learning style experiments inside Google's labs."
+    },
+    {
+      "name": "Bomomo",
+      "url": "https://bomomo.com",
+      "desc": "Playful generative doodling canvas full of quirky brushes and motion."
+    },
+    {
+      "name": "Klecks",
+      "url": "https://klecks.app",
+      "desc": "Fast browser painting app with a smooth clean feel and no clutter."
+    },
+    {
+      "name": "Make 8 Bit Art",
+      "url": "https://make8bitart.com",
+      "desc": "Tiny pixel art editor that is easy to use and looks great on screen."
+    },
+    {
+      "name": "Mr.doob Chrome Experiments",
+      "url": "https://mrdoob.com/projects/chromeexperiments/",
+      "desc": "A playground of classic browser graphics experiments from a web legend."
+    },
+    {
+      "name": "Vector Park",
+      "url": "https://vectorpark.com",
+      "desc": "Odd, tactile interactive art toys and creatures you can poke and manipulate."
+    },
+    {
+      "name": "Petri Purho Kursor",
+      "url": "https://www.kursor.com",
+      "desc": "A classic cursor-play experiment with a surprisingly satisfying feel."
     }
   ],
   "dev": [
@@ -2276,6 +2764,31 @@ const sites = {
       "name": "URL Parser",
       "url": "https://urlparser.com",
       "desc": "Break apart any URL into its protocol, hostname, path, query params, and fragments."
+    },
+    {
+      "name": "Regex Crossword",
+      "url": "https://regexcrossword.com",
+      "desc": "Solve crossword-style puzzles using regex and watch your brain melt pleasantly."
+    },
+    {
+      "name": "Flexbox Froggy",
+      "url": "https://flexboxfroggy.com",
+      "desc": "Learn CSS flexbox through a charming frog puzzle game."
+    },
+    {
+      "name": "Grid Garden",
+      "url": "https://cssgridgarden.com",
+      "desc": "Learn CSS Grid by watering a digital garden."
+    },
+    {
+      "name": "JS13K Games",
+      "url": "https://js13kgames.com/games",
+      "desc": "Tiny browser games that show how creative web code can get."
+    },
+    {
+      "name": "WebGL Samples",
+      "url": "https://webglsamples.org",
+      "desc": "Interactive graphics demos that show off what the browser can really do."
     }
   ],
   "nature": [
@@ -2370,11 +2883,6 @@ const sites = {
       "desc": "Database of all known ocean species with distribution maps worldwide."
     },
     {
-      "name": "MapCrunch",
-      "url": "https://www.mapcrunch.com",
-      "desc": "Teleport to a random Street View location anywhere on Earth and explore."
-    },
-    {
       "name": "Watch Duty",
       "url": "https://www.watchduty.org",
       "desc": "Free real-time wildfire tracking and alert system for affected communities."
@@ -2403,6 +2911,51 @@ const sites = {
       "name": "Elevation Finder",
       "url": "https://www.floodmap.net",
       "desc": "Click anywhere on a map to see its exact elevation above sea level."
+    },
+    {
+      "name": "Sunrise Sunset",
+      "url": "https://sunrise-sunset.org",
+      "desc": "Check sunrise, sunset, daylight length, and solar times for locations worldwide."
+    },
+    {
+      "name": "OpenProcessing",
+      "url": "https://openprocessing.org",
+      "desc": "Explore interactive simulations, generative art, and creative coding sketches."
+    },
+    {
+      "name": "BioInteractive",
+      "url": "https://www.biointeractive.org",
+      "desc": "Free science interactives and classroom-quality biology explorations."
+    },
+    {
+      "name": "Liveuamap Fires?",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "desc": "NASA wildfire map with live satellite fire detections across the world."
+    },
+    {
+      "name": "Light Pollution Map",
+      "url": "https://www.lightpollutionmap.info",
+      "desc": "Explore where the darkest skies are with an interactive global map."
+    },
+    {
+      "name": "WaterwayMap",
+      "url": "https://waterwaymap.org",
+      "desc": "Explore rivers and waterways in a strangely relaxing map interface."
+    },
+    {
+      "name": "NASA Eyes",
+      "url": "https://eyes.nasa.gov",
+      "desc": "Interactive NASA visualizations of Earth, the solar system, and missions."
+    },
+    {
+      "name": "Global Fishing Watch Map",
+      "url": "https://globalfishingwatch.org/map/",
+      "desc": "Watch fishing activity across the world on a live moving map."
+    },
+    {
+      "name": "Suncalc",
+      "url": "https://www.suncalc.org",
+      "desc": "Track the sun and moon across any location in an interactive sky map."
     }
   ],
   "mindblowing": [
@@ -2565,16 +3118,135 @@ const sites = {
       "name": "Scale of Data",
       "url": "https://informationisbeautiful.net/visualizations/the-scale-of-the-universe-2/",
       "desc": "A visual detour that helps make cosmic and microscopic scales feel more real."
+    },
+    {
+      "name": "The Deepest Site",
+      "url": "https://thedeepestsite.com",
+      "desc": "Scroll deeper and deeper beneath Earth’s surface to absurd depths."
+    },
+    {
+      "name": "Time.is",
+      "url": "https://time.is",
+      "desc": "Extremely precise live time website that feels oddly hypnotic and useful."
+    },
+    {
+      "name": "Internet Artifacts",
+      "url": "https://neal.fun/internet-artifacts",
+      "desc": "Explore iconic relics from the early internet in a polished interactive museum."
+    },
+    {
+      "name": "Asteroid Launcher",
+      "url": "https://neal.fun/asteroid-launcher",
+      "desc": "Launch asteroids at Earth and watch the scale of destruction change in real time."
+    },
+    {
+      "name": "Earth Reviews",
+      "url": "https://neal.fun/earth-reviews",
+      "desc": "Read fake reviews of Earth as if our planet were a place people could rate online."
+    },
+    {
+      "name": "Universe Forecast",
+      "url": "https://neal.fun/universe-forecast",
+      "desc": "Scroll through the future of the universe from tomorrow to heat death."
+    },
+    {
+      "name": "Printing Money",
+      "url": "https://neal.fun/printing-money",
+      "desc": "Print money and watch inflation spiral out of control in a brutally simple simulation."
+    },
+    {
+      "name": "Dark Patterns",
+      "url": "https://neal.fun/dark-patterns",
+      "desc": "See how manipulative interface tricks push people into choices they did not mean to make."
+    },
+    {
+      "name": "Where Does the Day Go?",
+      "url": "https://neal.fun/where-does-the-day-go",
+      "desc": "Visualize how your day gets eaten by sleep, work, chores, screens, and everything else."
+    },
+    {
+      "name": "Life Checklist",
+      "url": "https://neal.fun/life-checklist",
+      "desc": "A strangely reflective interactive checklist of life experiences and milestones."
+    },
+    {
+      "name": "Baby Map",
+      "url": "https://neal.fun/baby-map",
+      "desc": "Explore what babies are being named around the world on an interactive map."
+    },
+    {
+      "name": "Who Was Alive?",
+      "url": "https://neal.fun/who-was-alive",
+      "desc": "Pick a year and instantly see which famous people were alive at the same time."
+    },
+    {
+      "name": "Spend Bill Gates' Money",
+      "url": "https://neal.fun/spend-bill-gates-money",
+      "desc": "Blow through Bill Gates' fortune on absurd purchases and see how hard it is to run out."
+    },
+    {
+      "name": "Everyday I'm",
+      "url": "https://everydayim.com",
+      "desc": "A chaotic one-page internet oddity that feels like stumbling into a meme wormhole."
+    },
+    {
+      "name": "Clicking Bad",
+      "url": "https://clickingbad.nullism.com",
+      "desc": "A tiny Breaking Bad-inspired clicking game that is dumb in exactly the right way."
+    },
+    {
+      "name": "HyperRogue",
+      "url": "https://roguetemple.com/z/hyper/online.php",
+      "desc": "Explore a bizarre non-Euclidean world in a game that genuinely feels like another dimension."
+    },
+    {
+      "name": "Solar System Scope Night Sky",
+      "url": "https://www.solarsystemscope.com/nightSky",
+      "desc": "Point around an interactive night sky and explore stars and constellations."
+    },
+    {
+      "name": "Map of Reddit",
+      "url": "https://anvaka.github.io/map-of-reddit/",
+      "desc": "Explore Reddit as a giant interactive galaxy of communities."
+    },
+    {
+      "name": "Wiki Galaxy",
+      "url": "https://anvaka.github.io/pm/",
+      "desc": "A network-style map of knowledge that feels like flying through connected ideas."
+    },
+    {
+      "name": "HyperRogue",
+      "url": "https://roguetemple.com/z/hyper/",
+      "desc": "A mind-bending non-Euclidean game world that looks unlike almost anything else."
+    },
+    {
+      "name": "Nicky Case Seeing Whole Systems",
+      "url": "https://ncase.me/loot/",
+      "desc": "Interactive systems thinking in a playful browser format."
+    },
+    {
+      "name": "Map of GitHub",
+      "url": "https://anvaka.github.io/map-of-github/",
+      "desc": "A dense interactive network map of GitHub projects and their relationships."
+    },
+    {
+      "name": "The Size of Space Classic",
+      "url": "https://joshworth.com/dev/pixelspace/pixelspace_solarsystem.html",
+      "desc": "Scroll the solar system at true scale and realize how empty space really is."
+    },
+    {
+      "name": "The Pudding Stories",
+      "url": "https://pudding.cool/2024/08/shape-of-you/",
+      "desc": "Interactive storytelling that shows how web essays can feel like experiences."
     }
   ]
-};
-
-let currentCategory = 'all';
+};let currentCategory = 'all';
 let searchQuery = '';
 let searchTimer;
 const categoryOrder = ['fun','interactive','productivity','creative','learning','weird','music','visual','dev','nature','mindblowing'];
 const categoryLabels = {
   fun: 'fun entertainment games trivia',
+  interactive: 'interactive calming chill cozy relaxing visual playful websites',
   productivity: 'productivity tools writing forms planning utility',
   creative: 'creative design ui colors graphics mockups art',
   learning: 'learning education books study courses tutorials',
@@ -2585,6 +3257,25 @@ const categoryLabels = {
   nature: 'nature science maps weather space earth',
   mindblowing: 'mind blowing knowledge interactive ideas philosophy'
 };
+
+function applyTheme(theme) {
+  document.body.setAttribute('data-theme', theme);
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) toggle.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+  try { localStorage.setItem('webvault-theme', theme); } catch {}
+}
+
+function toggleTheme() {
+  const current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+function initTheme() {
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('webvault-theme'); } catch {}
+  const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(savedTheme || (systemDark ? 'dark' : 'light'));
+}
 
 function getDomain(url) {
   try {
@@ -2754,6 +3445,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 
+initTheme();
 buildGrids();
 updateStaticCounts();
 filterAndShow();
